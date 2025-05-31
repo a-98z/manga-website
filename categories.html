@@ -13,46 +13,6 @@
             --dark: #2c2c2c;
             --card-bg: #ffffff;
         }
-
-        /* أنماط CSS الأساسية الموجودة مسبقًا */
-        
-        /* تأثير التمييز عند الوصول للقسم المحدد */
-        .category-card:target {
-            animation: highlight 1.5s ease;
-            border-left: 5px solid var(--secondary);
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(252, 92, 101, 0.3);
-        }
-
-        @keyframes highlight {
-            0% { background-color: rgba(252, 92, 101, 0.1); }
-            100% { background-color: transparent; }
-        }
-
-        /* زر العودة لأعلى */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: var(--secondary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 24px;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-        }
-
         
         * {
             margin: 0;
@@ -66,11 +26,94 @@
             color: var(--dark);
         }
         
+        /* شريط التنقل العلوي */
+        .navbar {
+            background-color: var(--primary);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-links a.active {
+            background-color: var(--secondary);
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar input {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px 0 0 20px;
+            outline: none;
+            width: 200px;
+        }
+        
+        .search-bar button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background-color: #e74c3c;
+        }
+        
         /* التصميم العام */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            min-height: 100vh;
         }
         
         .section-header {
@@ -207,8 +250,145 @@
             margin-top: 40px;
         }
         
+        /* تأثير التمييز عند الوصول للقسم المحدد */
+        .category-card:target {
+            animation: highlight 1.5s ease;
+            border-left: 5px solid var(--secondary);
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(252, 92, 101, 0.3);
+        }
+        
+        @keyframes highlight {
+            0% { background-color: rgba(252, 92, 101, 0.1); }
+            100% { background-color: transparent; }
+        }
+        
+        /* زر العودة لأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+            text-align: right;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+        
         /* التصميم للجوال */
         @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .nav-links {
+                margin: 15px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px;
+            }
+            
+            .search-bar {
+                margin-top: 15px;
+                width: 100%;
+            }
+            
+            .search-bar input {
+                width: 100%;
+            }
+            
             .categories-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 15px;
@@ -217,12 +397,34 @@
             .section-title {
                 font-size: 24px;
             }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- شريط التنقل (يجب استبداله بشريطك الفعلي) -->
-    <nav class="navbar">...</nav>
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">مانغا<span>نا</span></a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="updates.html">المحدثات</a></li>
+                <li><a href="categories.html" class="active">الفئات</a></li>
+                <li><a href="about.html">عن الموقع</a></li>
+            </ul>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث عن مانجا...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
 
     <!-- محتوى صفحة الفئات -->
     <div class="container">
@@ -234,7 +436,7 @@
         
         <div class="categories-grid">
             <!-- الفئة 1 -->
-            <a href="manga-list.html?category=action" class="category-card">
+            <a href="manga-list.html?category=action" class="category-card" id="action">
                 <div class="category-badge">رائج</div>
                 <div class="category-img">
                     <img src="https://via.placeholder.com/300x200/3a3f58/ffffff?text=أكشن" alt="أكشن">
@@ -251,7 +453,7 @@
             </a>
             
             <!-- الفئة 2 -->
-            <a href="manga-list.html?category=adventure" class="category-card">
+            <a href="manga-list.html?category=adventure" class="category-card" id="adventure">
                 <div class="category-img">
                     <img src="https://via.placeholder.com/300x200/fc5c65/ffffff?text=مغامرات" alt="مغامرات">
                 </div>
@@ -266,7 +468,7 @@
             </a>
             
             <!-- الفئة 3 -->
-            <a href="manga-list.html?category=comedy" class="category-card">
+            <a href="manga-list.html?category=comedy" class="category-card" id="comedy">
                 <div class="category-img">
                     <img src="https://via.placeholder.com/300x200/2c2c2c/ffffff?text=كوميدي" alt="كوميدي">
                 </div>
@@ -281,7 +483,7 @@
             </a>
             
             <!-- الفئة 4 -->
-            <a href="manga-list.html?category=drama" class="category-card">
+            <a href="manga-list.html?category=drama" class="category-card" id="drama">
                 <div class="category-badge">جديد</div>
                 <div class="category-img">
                     <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=دراما" alt="دراما">
@@ -297,7 +499,7 @@
             </a>
             
             <!-- الفئة 5 -->
-            <a href="manga-list.html?category=fantasy" class="category-card">
+            <a href="manga-list.html?category=fantasy" class="category-card" id="fantasy">
                 <div class="category-img">
                     <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=فانتازيا" alt="فانتازيا">
                 </div>
@@ -322,7 +524,7 @@
             
             <div class="categories-grid">
                 <!-- الفئة 6 -->
-                <a href="manga-list.html?category=shounen" class="category-card">
+                <a href="manga-list.html?category=shounen" class="category-card" id="shounen">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=شونين" alt="شونين">
                     </div>
@@ -333,7 +535,7 @@
                 </a>
                 
                 <!-- الفئة 7 -->
-                <a href="manga-list.html?category=shoujo" class="category-card">
+                <a href="manga-list.html?category=shoujo" class="category-card" id="shoujo">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=شوجو" alt="شوجو">
                     </div>
@@ -344,7 +546,7 @@
                 </a>
                 
                 <!-- الفئة 8 -->
-                <a href="manga-list.html?category=seinen" class="category-card">
+                <a href="manga-list.html?category=seinen" class="category-card" id="seinen">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/34495e/ffffff?text=سينين" alt="سينين">
                     </div>
@@ -355,7 +557,7 @@
                 </a>
                 
                 <!-- الفئة 9 -->
-                <a href="manga-list.html?category=josei" class="category-card">
+                <a href="manga-list.html?category=josei" class="category-card" id="josei">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/9b59b6/ffffff?text=جوسيه" alt="جوسيه">
                     </div>
@@ -376,7 +578,7 @@
             
             <div class="categories-grid">
                 <!-- الفئة 10 -->
-                <a href="manga-list.html?category=romance" class="category-card">
+                <a href="manga-list.html?category=romance" class="category-card" id="romance">
                     <div class="category-badge">شائع</div>
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/f1c40f/ffffff?text=رومانسي" alt="رومانسي">
@@ -392,7 +594,7 @@
                 </a>
                 
                 <!-- الفئة 11 -->
-                <a href="manga-list.html?category=sci-fi" class="category-card">
+                <a href="manga-list.html?category=sci-fi" class="category-card" id="sci-fi">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/1abc9c/ffffff?text=خيال علمي" alt="خيال علمي">
                     </div>
@@ -407,7 +609,7 @@
                 </a>
                 
                 <!-- الفئة 12 -->
-                <a href="manga-list.html?category=horror" class="category-card">
+                <a href="manga-list.html?category=horror" class="category-card" id="horror">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/2c3e50/ffffff?text=رعب" alt="رعب">
                     </div>
@@ -422,7 +624,7 @@
                 </a>
                 
                 <!-- الفئة 13 -->
-                <a href="manga-list.html?category=mystery" class="category-card">
+                <a href="manga-list.html?category=mystery" class="category-card" id="mystery">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/7f8c8d/ffffff?text=غموض" alt="غموض">
                     </div>
@@ -447,7 +649,7 @@
             
             <div class="categories-grid">
                 <!-- الفئة 14 -->
-                <a href="manga-list.html?category=isekai" class="category-card">
+                <a href="manga-list.html?category=isekai" class="category-card" id="isekai">
                     <div class="category-badge">ترند</div>
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/27ae60/ffffff?text=Isekai" alt="Isekai">
@@ -463,7 +665,7 @@
                 </a>
                 
                 <!-- الفئة 15 -->
-                <a href="manga-list.html?category=sports" class="category-card">
+                <a href="manga-list.html?category=sports" class="category-card" id="sports">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/d35400/ffffff?text=رياضة" alt="رياضة">
                     </div>
@@ -478,7 +680,7 @@
                 </a>
                 
                 <!-- الفئة 16 -->
-                <a href="manga-list.html?category=slice-of-life" class="category-card">
+                <a href="manga-list.html?category=slice-of-life" class="category-card" id="slice-of-life">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/16a085/ffffff?text=حياة يومية" alt="حياة يومية">
                     </div>
@@ -493,7 +695,7 @@
                 </a>
                 
                 <!-- الفئة 17 -->
-                <a href="manga-list.html?category=historical" class="category-card">
+                <a href="manga-list.html?category=historical" class="category-card" id="historical">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/c0392b/ffffff?text=تاريخي" alt="تاريخي">
                     </div>
@@ -518,7 +720,7 @@
             
             <div class="categories-grid">
                 <!-- الفئة 18 -->
-                <a href="manga-list.html?category=psychological" class="category-card">
+                <a href="manga-list.html?category=psychological" class="category-card" id="psychological">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=نفسي" alt="نفسي">
                     </div>
@@ -533,7 +735,7 @@
                 </a>
                 
                 <!-- الفئة 19 -->
-                <a href="manga-list.html?category=supernatural" class="category-card">
+                <a href="manga-list.html?category=supernatural" class="category-card" id="supernatural">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/2980b9/ffffff?text=خارق" alt="خارق">
                     </div>
@@ -548,7 +750,7 @@
                 </a>
                 
                 <!-- الفئة 20 -->
-                <a href="manga-list.html?category=mecha" class="category-card">
+                <a href="manga-list.html?category=mecha" class="category-card" id="mecha">
                     <div class="category-img">
                         <img src="https://via.placeholder.com/300x200/7f8c8d/ffffff?text=ميكا" alt="ميكا">
                     </div>
@@ -565,32 +767,40 @@
         </div>
     </div>
     
-    <!-- تذييل الصفحة (يجب استبداله بتذييلك الفعلي) -->
-    <footer>...</footer>
-
-    <!-- تأثيرات إضافية -->
-    <script>
-        // إضافة تأثيرات للبطاقات عند التمرير
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.category-card');
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن الموقع</h3>
+                <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب.</p>
+            </div>
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="manga-list.html">قائمة المانجا</a></li>
+                    <li><a href="categories.html">الفئات</a></li>
+                    <li><a href="updates.html">المحدثات</a></li>
+                    <li><a href="about.html">اتصل بنا</a></li>
+                </ul>
+            </div>
             
-            cards.forEach(card => {
-                card.style.opacity = 0;
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.5s ease';
-                observer.observe(card);
-            });
-        });
-           <!-- محتوى الصفحة -->
+            <div class="footer-column">
+                <h3>التواصل الاجتماعي</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 مانجا نا. جميع الحقوق محفوظة.
+        </div>
+    </footer>
 
     <!-- زر العودة لأعلى -->
     <a href="#" class="back-to-top" id="backToTop">↑</a>
@@ -611,13 +821,36 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // إضافة تأثيرات للبطاقات عند التمرير
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.category-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
                 });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                observer.observe(card);
             });
         });
     </script>
-    // زر العودة 
-    <a href="#" class="back-to-top" title="العودة لأعلى">↑</a>
 </body>
 </html>

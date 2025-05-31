@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <!-- معلومات الموقع الأساسية -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>موقع مانغا - قراءة المانغا العربية</title>
-    
-    <!-- وصف الموقع لمحركات البحث -->
     <meta name="description" content="موقع لقراءة المانغا والمانهوا العربية مجاناً">
-    
-    <!-- روابط ملفات CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* يمكنك تعديل الألوان والخطوط حسب رغبتك */
         :root {
             --primary-color: #3a3f58;
             --secondary-color: #fc5c65;
@@ -20,7 +14,6 @@
             --light-color: #f5f5f5;
         }
         
-        /* إعادة ضبط بعض العناصر الأساسية */
         * {
             margin: 0;
             padding: 0;
@@ -33,7 +26,6 @@
             color: var(--dark-color);
         }
         
-        /* شريط التنقل العلوي */
         .navbar {
             background-color: var(--primary-color);
             padding: 15px 0;
@@ -98,7 +90,6 @@
             cursor: pointer;
         }
         
-        /* قسم الهيرو (الصورة الرئيسية) */
         .hero {
             background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x600');
             background-size: cover;
@@ -136,7 +127,6 @@
             background-color: #e74c3c;
         }
         
-        /* قسم المانغا الشائعة */
         .popular-manga {
             padding: 50px 0;
             max-width: 1200px;
@@ -202,7 +192,6 @@
             font-size: 14px;
         }
         
-        /* قسم الفئات */
         .categories {
             background-color: var(--primary-color);
             padding: 50px 0;
@@ -233,7 +222,6 @@
             background-color: var(--secondary-color);
         }
         
-        /* تذييل الصفحة */
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -306,7 +294,6 @@
             font-size: 14px;
         }
         
-        /* تصميم متجاوب */
         @media (max-width: 768px) {
             .navbar-container {
                 flex-direction: column;
@@ -338,14 +325,14 @@
     <!-- شريط التنقل العلوي -->
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="#" class="logo">مانغا<span style="color: var(--secondary-color);">نا</span></a>
+            <a href="index.html" class="logo">مانغا<span style="color: var(--secondary-color);">نا</span></a>
             
-           <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>  <!-- رابط الصفحة الرئيسية -->
-    <li><a href="manga-list.html">قائمة المانغا</a></li> <!-- الرابط الجديد -->
-    <li><a href="#">الفئات</a></li>
-                <li><a href="#">المحدثات</a></li>
-                <li><a href="#">عن الموقع</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانغا</a></li>
+                <li><a href="categories.html">الفئات</a></li>
+                <li><a href="updates.html">المحدثات</a></li>
+                <li><a href="about.html">عن الموقع</a></li>
             </ul>
             
             <div class="search-bar">
@@ -355,265 +342,10 @@
         </div>
     </nav>
     
-    <!-- قسم الهيرو (الصورة الرئيسية) -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>اقرأ أفضل المانغا العربية</h1>
-            <p>آلاف الفصول من المانغا والمانهوا متاحة للقراءة مجاناً</p>
-            <a href="#" class="btn">استكشف الآن</a>
-        </div>
-    </section>
+    <!-- باقي محتوى الصفحة الرئيسية -->
+    <!-- ... -->
     
-    <!-- قسم المانغا الشائعة -->
-    <section class="popular-manga">
-        <h2 class="section-title">المانغا الشائعة</h2>
-        
-        <div class="manga-grid">
-            <!-- مانغا 1 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا 1">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">ون بيس</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 1054</span>
-                        <span><i class="fas fa-eye"></i> 1.2M</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 2 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا 2">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">هجوم العمالقة</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 139</span>
-                        <span><i class="fas fa-eye"></i> 980K</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 3 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا 3">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">ناروتو</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 700</span>
-                        <span><i class="fas fa-eye"></i> 2.5M</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 4 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا 4">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">بليتش</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 686</span>
-                        <span><i class="fas fa-eye"></i> 1.8M</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 5 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا 5">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">بلاك كلوفر</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 332</span>
-                        <span><i class="fas fa-eye"></i> 750K</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 6 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا 6">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">سباي فاميلي</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 72</span>
-                        <span><i class="fas fa-eye"></i> 1.1M</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- قسم الفئات -->
-    <section class="categories">
-        <div class="categories-container">
-            <h2 class="section-title">تصفح حسب الفئة</h2>
-            
-            <div class="category-list">
-                <a href="#" class="category-item">أكشن</a>
-                <a href="#" class="category-item">مغامرات</a>
-                <a href="#" class="category-item">كوميدي</a>
-                <a href="#" class="category-item">دراما</a>
-                <a href="#" class="category-item">فانتازيا</a>
-                <a href="#" class="category-item">رعب</a>
-                <a href="#" class="category-item">غموض</a>
-                <a href="#" class="category-item">رومانسي</a>
-                <a href="#" class="category-item">خيال علمي</a>
-                <a href="#" class="category-item">شونين</a>
-                <a href="#" class="category-item">شوجو</a>
-                <a href="#" class="category-item">سيينن</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- قسم المانغا المحدثة -->
-    <section class="popular-manga">
-        <h2 class="section-title">أحدث الإضافات</h2>
-        
-        <div class="manga-grid">
-            <!-- مانغا محدثة 1 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا محدثة 1">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">سولو ليفيلينج</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 179</span>
-                        <span>منذ ساعتين</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا محدثة 2 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا محدثة 2">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">تومو-تشان فتاة!</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 963</span>
-                        <span>منذ 5 ساعات</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا محدثة 3 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا محدثة 3">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">ذا برومكسد ون</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 45</span>
-                        <span>منذ يوم</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا محدثة 4 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا محدثة 4">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">ما شاء الله</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 32</span>
-                        <span>منذ يوم</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا محدثة 5 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا محدثة 5">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">بطل الدرع</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 87</span>
-                        <span>منذ يومين</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا محدثة 6 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="مانغا محدثة 6">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">نهاية العالم</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 64</span>
-                        <span>منذ 3 أيام</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- تذييل الصفحة -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-column">
-                <h3>عن الموقع</h3>
-                <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب.</p>
-            </div>
-            
-            <div class="footer-column">
-                <h3>روابط سريعة</h3>
-                <ul>
-                    <li><a href="#">الرئيسية</a></li>
-                    <li><a href="#">قائمة المانغا</a></li>
-                    <li><a href="#">الفئات</a></li>
-                    <li><a href="#">المحدثات</a></li>
-                    <li><a href="#">اتصل بنا</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>المساعدة</h3>
-                <ul>
-                    <li><a href="#">الأسئلة الشائعة</a></li>
-                    <li><a href="#">شروط الاستخدام</a></li>
-                    <li><a href="#">سياسة الخصوصية</a></li>
-                    <li><a href="#">الإبلاغ عن مشكلة</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
-        </div>
-        
-        <div class="copyright">
-            &copy; 2023 موقع مانغا نا. جميع الحقوق محفوظة.
-        </div>
-    </footer>
-    
-    <!-- روابط ملفات JavaScript -->
     <script>
-        // يمكنك إضافة الأكواد الجافاسكريبت هنا
-        // هذا مثال بسيط لتغيير لون الخلفية عند التمرير
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {

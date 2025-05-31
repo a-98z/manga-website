@@ -2,52 +2,242 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المحدثات - شات المانجا</title>
     <!-- روابط التنسيق الأساسية -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* أنماط CSS الأساسية من الصفحة الرئيسية */
-        :root { --primary-color: #3a3f58; --secondary-color: #fc5c65; }
-        body { font-family: 'Tajawal'; background: #f5f5f5; }
+        /* أنماط CSS العامة */
+        :root {
+            --primary-color: #3a3f58;
+            --secondary-color: #fc5c65;
+            --admin-color: #4a6fa5;
+            --system-color: #666;
+            --user-color: #4caf50;
+            --light-bg: #f9f9f9;
+            --dark-text: #333;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
         
-        /* تنسيقات الشات */
+        /* شريط التنقل */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .logo i {
+            margin-left: 10px;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-right: 1.5rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        .nav-links a.active {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+            font-size: 1rem;
+        }
+        .user-actions .btn {
+            background: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .user-actions .btn:hover {
+            background: #e74c3c;
+        }
+        
+        /* تنسيقات الشات المحسنة */
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
         .chat-container {
             max-width: 800px;
             margin: 30px auto;
             border: 1px solid #ddd;
             border-radius: 10px;
             overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .chat-header {
             background: var(--primary-color);
             color: white;
             padding: 15px;
             text-align: center;
+            font-size: 1.2em;
+            position: relative;
+        }
+        .chat-status {
+            font-size: 0.8em;
+            margin-top: 5px;
+            padding: 3px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
         }
         .chat-messages {
-            height: 400px;
+            height: 500px;
             overflow-y: auto;
             padding: 15px;
             background: white;
+            scroll-behavior: smooth;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+            position: relative;
+        }
+        .message.user {
+            background: #e3f2fd;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        .message.admin {
+            background: #e8f5e9;
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+            border: 1px solid var(--admin-color);
+        }
+        .message.system {
+            background: #f5f5f5;
+            margin: 10px auto;
+            text-align: center;
+            border: 1px dashed var(--system-color);
+            max-width: 90%;
+            color: var(--system-color);
+            font-size: 0.9em;
+        }
+        .message .sender {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .message .time {
+            font-size: 0.7em;
+            color: #777;
+            display: block;
+            margin-top: 5px;
+            text-align: left;
         }
         .chat-input {
             display: flex;
-            padding: 10px;
+            padding: 15px;
             background: #eee;
+            align-items: center;
         }
         #message-input {
             flex: 1;
-            padding: 10px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 25px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1em;
+            outline: none;
+            transition: border 0.3s;
+        }
+        #message-input:focus {
+            border-color: var(--secondary-color);
         }
         #send-btn {
             background: var(--secondary-color);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             margin-right: 10px;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        #send-btn:hover {
+            background: #e74c3c;
+        }
+        #send-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
         }
         .login-notice {
             text-align: center;
@@ -56,55 +246,257 @@
             margin: 20px auto;
             max-width: 800px;
             border-radius: 5px;
+            border-left: 5px solid #ffc107;
         }
         .admin-controls {
             background: #d4edda;
             padding: 10px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .admin-controls button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s;
+        }
+        #close-chat {
+            background: var(--secondary-color);
+            color: white;
+        }
+        #clear-chat {
+            background: var(--primary-color);
+            color: white;
+        }
+        .admin-controls button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        /* تأثيرات للرسائل الجديدة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-section ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .logo {
+                margin-bottom: 1rem;
+            }
+            .nav-links {
+                margin-bottom: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links li {
+                margin: 0 0.5rem 0.5rem;
+            }
+            .user-actions {
+                margin-top: 1rem;
+            }
+            .chat-container {
+                margin: 10px;
+                border-radius: 0;
+            }
+            .chat-messages {
+                height: 60vh;
+            }
+            .message {
+                max-width: 90%;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .footer-section h3::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+            .social-links {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>مانجا العرب</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="updates.html" class="active">المحدثات</a></li>
+                <li><a href="community.html">المجتمع</a></li>
+                <li><a href="about.html">عن الموقع</a></li>
+            </ul>
+            
+            <div class="user-actions">
+                <a href="login.html">تسجيل الدخول</a>
+                <a href="register.html" class="btn">إنشاء حساب</a>
+            </div>
+        </div>
+    </nav>
 
-    <!-- شريط التنقل (مثل باقي الصفحات) -->
-    <nav class="navbar">...</nav>
+    <!-- المحتوى الرئيسي -->
+    <main class="main-container">
+        <h1 class="page-title">شات مجتمع المانجا</h1>
+        
+        <!-- واجهة الشات المحسنة -->
+        <div class="chat-container" id="chat-box">
+            <div class="chat-header">
+                شات مجتمع المانجا
+                <div class="chat-status" id="chat-status">جاري التحميل...</div>
+                <div class="admin-controls" id="admin-controls" style="display:none;">
+                    <button id="close-chat">إغلاق الشات</button>
+                    <button id="clear-chat">مسح المحادثة</button>
+                    <button id="ban-user">حظر مستخدم</button>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages">
+                <!-- الرسائل تظهر هنا عبر الجافاسكريبت -->
+                <div class="message system">جارٍ تحميل الشات...</div>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="اكتب رسالتك هنا..." disabled>
+                <button id="send-btn" disabled>إرسال</button>
+            </div>
+        </div>
 
-    <!-- قسم المحدثات -->
-    <section class="updates-section">
-        <h1>أحدث إصدارات المانجا</h1>
-        <!-- يمكنك وضع قائمة المحدثات هنا -->
-    </section>
+        <!-- رسالة للمستخدمين غير المسجلين -->
+        <div class="login-notice" id="login-notice" style="display:none;">
+            <p>يجب <a href="login.html">تسجيل الدخول</a> للمشاركة في الشات.</p>
+        </div>
+    </main>
 
-    <!-- واجهة الشات -->
-    <div class="chat-container" id="chat-box">
-        <div class="chat-header">
-            شات المانجا (مفتوح من 4 مساءً إلى 8 مساءً)
-            <div class="admin-controls" id="admin-controls" style="display:none;">
-                <button id="close-chat">إغلاق الشات</button>
-                <button id="clear-chat">مسح المحادثة</button>
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>مانجا العرب</h3>
+                <p>الوجهة الأولى لعشاق المانجا العربية. نقدم أحدث الإصدارات والترجمات بجودة عالية.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="manga-list.html">قائمة المانجا</a></li>
+                    <li><a href="updates.html">المحدثات</a></li>
+                    <li><a href="community.html">المجتمع</a></li>
+                    <li><a href="about.html">عن الموقع</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>الدعم</h3>
+                <ul>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                    <li><a href="policy.html">سياسة الخصوصية</a></li>
+                    <li><a href="terms.html">شروط الاستخدام</a></li>
+                </ul>
             </div>
         </div>
         
-        <div class="chat-messages" id="chat-messages">
-            <!-- الرسائل تظهر هنا عبر الجافاسكريبت -->
-            <div class="system-msg">الشات مغلق حاليًا. سيفتح من الساعة 4 مساءً إلى 8 مساءً.</div>
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2023 مانجا العرب. المحتوى يعود لأصحابه الأصليين.</p>
         </div>
-        
-        <div class="chat-input">
-            <input type="text" id="message-input" placeholder="اكتب رسالتك..." disabled>
-            <button id="send-btn" disabled>إرسال</button>
-        </div>
-    </div>
-
-    <!-- رسالة للمستخدمين غير المسجلين -->
-    <div class="login-notice" id="login-notice">
-        <p>يجب <a href="login.html">تسجيل الدخول</a> للمشاركة في الشات.</p>
-    </div>
+    </footer>
 
     <!-- مكتبة Socket.io للشات في الوقت الحقيقي -->
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     
-    <!-- كود الجافاسكريبت -->
+    <!-- كود الجافاسكريبت المحسن -->
     <script>
         // عناصر واجهة المستخدم
         const chatMessages = document.getElementById('chat-messages');
@@ -112,16 +504,22 @@
         const sendBtn = document.getElementById('send-btn');
         const loginNotice = document.getElementById('login-notice');
         const adminControls = document.getElementById('admin-controls');
+        const chatStatus = document.getElementById('chat-status');
 
-        // حالة المستخدم (ستُحدد لاحقًا عبر نظام التسجيل)
-        const isLoggedIn = false; // سيتم تغييرها لاحقًا
-        const isAdmin = false;    // سيتم تغييرها لاحقًا
+        // حالة المستخدم (سيتم جلبها من نظام التسجيل)
+        let isLoggedIn = false; // سيتم تغييرها بعد التحقق من تسجيل الدخول
+        let isAdmin = false;    // سيتم تغييرها بعد التحقق من الصلاحيات
+        let currentUser = null; // سيحتوي على بيانات المستخدم عند تسجيل الدخول
 
         // أوقات عمل الشات (4 مساءً - 8 مساءً)
         const chatOpenHours = { start: 16, end: 20 }; // 16 = 4PM, 20 = 8PM
 
+        // حالة الشات
+        let chatIsOpen = false;
+        let socket = null;
+
         // تحقق إذا كان الشات مفتوحًا الآن
-        function isChatOpen() {
+        function checkChatHours() {
             const now = new Date();
             const currentHour = now.getHours();
             return currentHour >= chatOpenHours.start && currentHour < chatOpenHours.end;
@@ -129,57 +527,146 @@
 
         // تحديث واجهة الشات حسب الحالة
         function updateChatUI() {
-            const chatIsOpen = isChatOpen();
+            chatIsOpen = checkChatHours();
             
-            if (chatIsOpen && isLoggedIn) {
-                messageInput.disabled = false;
-                sendBtn.disabled = false;
-                loginNotice.style.display = 'none';
+            if (chatIsOpen) {
+                chatStatus.textContent = 'الشات مفتوح الآن';
+                chatStatus.style.backgroundColor = '#4CAF50';
+                
+                if (isLoggedIn) {
+                    messageInput.disabled = false;
+                    sendBtn.disabled = false;
+                    loginNotice.style.display = 'none';
+                } else {
+                    loginNotice.style.display = 'block';
+                }
             } else {
+                chatStatus.textContent = 'الشات مغلق (يفتح من 4 مساءً إلى 8 مساءً)';
+                chatStatus.style.backgroundColor = '#F44336';
                 messageInput.disabled = true;
                 sendBtn.disabled = true;
-                if (!isLoggedIn) loginNotice.style.display = 'block';
             }
 
-            if (isAdmin) adminControls.style.display = 'block';
+            if (isAdmin) adminControls.style.display = 'flex';
         }
 
-        // محاكاة اتصال بالشات (ستستبدل ب Socket.io لاحقًا)
+        // الاتصال بخادم الشات
         function connectToChat() {
-            if (!isChatOpen()) return;
+            // محاكاة الاتصال بالسيرفر (ستستبدل باتصال Socket.io الحقيقي)
+            socket = {
+                emit: (event, data) => {
+                    console.log(`إرسال: ${event}`, data);
+                    // محاكاة استجابة السيرفر
+                    setTimeout(() => {
+                        if (event === 'send_message') {
+                            addMessage(data.sender || currentUser?.username || 'أنت', data.text, 'user');
+                        }
+                    }, 300);
+                },
+                on: (event, callback) => {
+                    console.log(`الاستماع إلى: ${event}`);
+                }
+            };
 
-            // هنا سيتم الاتصال بالسيرفر
-            console.log("جارٍ الاتصال بالشات...");
-            
-            // مثال لإضافة رسالة وهمية
-            addMessage('مدير النظام', 'مرحبًا بكم في شات المانجا اليوم!', 'admin');
+            // إضافة بعض الرسائل الوهمية للتوضيح
+            setTimeout(() => {
+                addMessage('النظام', 'تم الاتصال بخادم الشات بنجاح', 'system');
+                addMessage('مدير_المنتدى', 'مرحباً بكم في شات مجتمع المانجا! اليوم سنناقش أحدث إصدارات المانجا.', 'admin');
+                
+                if (isLoggedIn) {
+                    addMessage('النظام', `مرحباً ${currentUser?.username || 'عزيزي'}! يمكنك البدء بالدردشة الآن.`, 'system');
+                }
+            }, 1000);
         }
 
         // إضافة رسالة للواجهة
         function addMessage(sender, text, type = 'user') {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', type);
+            
+            let messageContent = `<span class="sender">${sender}:</span> ${text}`;
+            
+            if (type === 'system') {
+                messageContent = text;
+            }
+            
             messageDiv.innerHTML = `
-                <strong>${sender}:</strong> ${text}
-                <span class="time">${new Date().toLocaleTimeString()}</span>
+                ${messageContent}
+                <span class="time">${new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})}</span>
             `;
+            
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
+        // إرسال رسالة
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message || !chatIsOpen || !isLoggedIn) return;
+            
+            // إرسال الرسالة عبر السوكيت
+            socket.emit('send_message', {
+                sender: currentUser?.username,
+                text: message,
+                timestamp: new Date().toISOString()
+            });
+            
+            // مسح حقل الإدخال
+            messageInput.value = '';
+        }
+
         // تهيئة الشات عند تحميل الصفحة
-        updateChatUI();
-        connectToChat();
+        function initChat() {
+            // هنا سيتم التحقق من حالة تسجيل الدخول (محاكاة)
+            setTimeout(() => {
+                // يمكنك تغيير هذه القيم للاختبار
+                isLoggedIn = true; // جرب false لرؤية رسالة تسجيل الدخول
+                isAdmin = false;    // جرب true لرؤية عناصر التحكم الإدارية
+                
+                if (isLoggedIn) {
+                    currentUser = {
+                        username: 'محب_المانجا',
+                        role: isAdmin ? 'admin' : 'user'
+                    };
+                }
+                
+                updateChatUI();
+                connectToChat();
+            }, 500);
+        }
 
         // الأزرار الإدارية (للمشرفين فقط)
         document.getElementById('close-chat')?.addEventListener('click', () => {
-            addMessage('النظام', 'تم إغلاق الشات بواسطة المشرف.', 'system');
+            chatIsOpen = false;
+            updateChatUI();
+            addMessage('النظام', 'تم إغلاق الشات مؤقتاً بواسطة المشرف.', 'system');
         });
 
         document.getElementById('clear-chat')?.addEventListener('click', () => {
-            chatMessages.innerHTML = '';
-            addMessage('النظام', 'تم مسح المحادثة.', 'system');
+            if (confirm('هل أنت متأكد من رغبتك في مسح كل الرسائل؟')) {
+                chatMessages.innerHTML = '';
+                addMessage('النظام', 'تم مسح محادثة الشات.', 'system');
+            }
         });
+
+        document.getElementById('ban-user')?.addEventListener('click', () => {
+            const username = prompt('أدخل اسم المستخدم الذي تريد حظره:');
+            if (username) {
+                addMessage('النظام', `تم حظر المستخدم ${username} من الشات.`, 'system');
+            }
+        });
+
+        // أحداث لوحة المفاتيح
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        sendBtn.addEventListener('click', sendMessage);
+
+        // بدء الشات
+        initChat();
     </script>
 </body>
 </html>

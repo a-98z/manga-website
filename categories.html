@@ -590,6 +590,32 @@
                 observer.observe(card);
             });
         });
+           <!-- محتوى الصفحة -->
+
+    <!-- زر العودة لأعلى -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <!-- الجافاسكريبت -->
+    <script>
+        // ظهور/إخفاء زر العودة عند التمرير
+        window.addEventListener('scroll', function() {
+            const backButton = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backButton.classList.add('visible');
+            } else {
+                backButton.classList.remove('visible');
+            }
+        });
+
+        // تأثير سلس للانتقال للأقسام
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>

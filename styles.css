@@ -55,3 +55,46 @@ body {
 }
 
 /* ... (أضف باقي الأنماط من الكود السابق هنا) ... */
+
+/* تأثير التمييز عند الوصول للقسم */
+.category-card:target {
+    animation: highlight 1.5s ease;
+    border-left: 5px solid #fc5c65;
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(252, 92, 101, 0.3);
+}
+
+@keyframes highlight {
+    0% { background-color: rgba(252, 92, 101, 0.1); }
+    100% { background-color: transparent; }
+}
+
+/* زر العودة لأعلى (CSS فقط) */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: #fc5c65;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 24px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* ظهور الزر عند التمرير (باستخدام CSS فقط) */
+html {
+    scroll-behavior: smooth;
+}
+
+:target ~ .back-to-top,
+.back-to-top:target {
+    opacity: 1;
+}

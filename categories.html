@@ -2,19 +2,554 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>فئات المانغا</title>
-    <!-- نفس الروابط -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصنيفات المانجا - مانجا نا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3a3f58;
+            --secondary: #fc5c65;
+            --light: #f8f9fa;
+            --dark: #2c2c2c;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+        }
+        
+        /* التصميم العام */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 70px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .view-all {
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .view-all:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* تصنيفات البطاقات */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .category-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 2;
+        }
+        
+        .category-img {
+            height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+        
+        .category-content {
+            padding: 20px;
+        }
+        
+        .category-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .category-count {
+            color: #666;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .subcategories {
+            margin-top: 15px;
+            border-top: 1px dashed #ddd;
+            padding-top: 15px;
+        }
+        
+        .subcategory {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 3px;
+            color: #555;
+            transition: all 0.2s;
+        }
+        
+        .subcategory:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* الأقسام الفرعية */
+        .subcategory-section {
+            margin-top: 40px;
+        }
+        
+        /* التصميم للجوال */
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <!-- نفس شريط التنقل -->
-    </nav>
+    <!-- شريط التنقل (يجب استبداله بشريطك الفعلي) -->
+    <nav class="navbar">...</nav>
 
-    <section class="categories">
-        <h2 class="section-title">تصفح حسب الفئة</h2>
-        <div class="category-list">
-            <!-- قائمة الفئات -->
+    <!-- محتوى صفحة الفئات -->
+    <div class="container">
+        <!-- قسم الفئات الرئيسية -->
+        <div class="section-header">
+            <h2 class="section-title">الفئات الرئيسية</h2>
+            <a href="manga-list.html?filter=all" class="view-all">عرض الكل</a>
         </div>
-    </section>
+        
+        <div class="categories-grid">
+            <!-- الفئة 1 -->
+            <a href="manga-list.html?category=action" class="category-card">
+                <div class="category-badge">رائج</div>
+                <div class="category-img">
+                    <img src="https://via.placeholder.com/300x200/3a3f58/ffffff?text=أكشن" alt="أكشن">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">أكشن</h3>
+                    <span class="category-count">1,245 مانجا</span>
+                    <div class="subcategories">
+                        <span class="subcategory">قتال</span>
+                        <span class="subcategory">أكشن خيال</span>
+                        <span class="subcategory">فنون قتالية</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- الفئة 2 -->
+            <a href="manga-list.html?category=adventure" class="category-card">
+                <div class="category-img">
+                    <img src="https://via.placeholder.com/300x200/fc5c65/ffffff?text=مغامرات" alt="مغامرات">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">مغامرات</h3>
+                    <span class="category-count">980 مانجا</span>
+                    <div class="subcategories">
+                        <span class="subcategory">رحلات</span>
+                        <span class="subcategory">استكشاف</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- الفئة 3 -->
+            <a href="manga-list.html?category=comedy" class="category-card">
+                <div class="category-img">
+                    <img src="https://via.placeholder.com/300x200/2c2c2c/ffffff?text=كوميدي" alt="كوميدي">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">كوميدي</h3>
+                    <span class="category-count">1,750 مانجا</span>
+                    <div class="subcategories">
+                        <span class="subcategory">كوميديا رومانسية</span>
+                        <span class="subcategory">كوميديا سوداء</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- الفئة 4 -->
+            <a href="manga-list.html?category=drama" class="category-card">
+                <div class="category-badge">جديد</div>
+                <div class="category-img">
+                    <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=دراما" alt="دراما">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">دراما</h3>
+                    <span class="category-count">890 مانجا</span>
+                    <div class="subcategories">
+                        <span class="subcategory">مأساوي</span>
+                        <span class="subcategory">سيرة ذاتية</span>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- الفئة 5 -->
+            <a href="manga-list.html?category=fantasy" class="category-card">
+                <div class="category-img">
+                    <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=فانتازيا" alt="فانتازيا">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">فانتازيا</h3>
+                    <span class="category-count">2,150 مانجا</span>
+                    <div class="subcategories">
+                        <span class="subcategory">عالم خيالي</span>
+                        <span class="subcategory">سحر</span>
+                        <span class="subcategory">مخلوقات</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <!-- قسم الفئات الفرعية 1 -->
+        <div class="subcategory-section">
+            <div class="section-header">
+                <h2 class="section-title">فئات حسب الجمهور</h2>
+                <a href="manga-list.html?filter=demographic" class="view-all">عرض الكل</a>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- الفئة 6 -->
+                <a href="manga-list.html?category=shounen" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=شونين" alt="شونين">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">شونين</h3>
+                        <span class="category-count">3,200 مانجا</span>
+                    </div>
+                </a>
+                
+                <!-- الفئة 7 -->
+                <a href="manga-list.html?category=shoujo" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=شوجو" alt="شوجو">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">شوجو</h3>
+                        <span class="category-count">1,850 مانجا</span>
+                    </div>
+                </a>
+                
+                <!-- الفئة 8 -->
+                <a href="manga-list.html?category=seinen" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/34495e/ffffff?text=سينين" alt="سينين">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">سينين</h3>
+                        <span class="category-count">1,420 مانجا</span>
+                    </div>
+                </a>
+                
+                <!-- الفئة 9 -->
+                <a href="manga-list.html?category=josei" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/9b59b6/ffffff?text=جوسيه" alt="جوسيه">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">جوسيه</h3>
+                        <span class="category-count">950 مانجا</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- قسم الفئات الفرعية 2 -->
+        <div class="subcategory-section">
+            <div class="section-header">
+                <h2 class="section-title">فئات حسب الموضوع</h2>
+                <a href="manga-list.html?filter=theme" class="view-all">عرض الكل</a>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- الفئة 10 -->
+                <a href="manga-list.html?category=romance" class="category-card">
+                    <div class="category-badge">شائع</div>
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/f1c40f/ffffff?text=رومانسي" alt="رومانسي">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">رومانسي</h3>
+                        <span class="category-count">2,780 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">حياة مدرسية</span>
+                            <span class="subcategory">حب مثلية</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- الفئة 11 -->
+                <a href="manga-list.html?category=sci-fi" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/1abc9c/ffffff?text=خيال علمي" alt="خيال علمي">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">خيال علمي</h3>
+                        <span class="category-count">1,120 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">فضاء</span>
+                            <span class="subcategory">مستقبل</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- الفئة 12 -->
+                <a href="manga-list.html?category=horror" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/2c3e50/ffffff?text=رعب" alt="رعب">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">رعب</h3>
+                        <span class="category-count">670 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">جن</span>
+                            <span class="subcategory">غموض</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- الفئة 13 -->
+                <a href="manga-list.html?category=mystery" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/7f8c8d/ffffff?text=غموض" alt="غموض">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">غموض</h3>
+                        <span class="category-count">890 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">تحقيق</span>
+                            <span class="subcategory">جريمة</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- قسم الفئات الفرعية 3 -->
+        <div class="subcategory-section">
+            <div class="section-header">
+                <h2 class="section-title">فئات خاصة</h2>
+                <a href="manga-list.html?filter=special" class="view-all">عرض الكل</a>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- الفئة 14 -->
+                <a href="manga-list.html?category=isekai" class="category-card">
+                    <div class="category-badge">ترند</div>
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/27ae60/ffffff?text=Isekai" alt="Isekai">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">Isekai</h3>
+                        <span class="category-count">1,450 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">عالم آخر</span>
+                            <span class="subcategory">إعادةincarnation</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- الفئة 15 -->
+                <a href="manga-list.html?category=sports" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/d35400/ffffff?text=رياضة" alt="رياضة">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">رياضة</h3>
+                        <span class="category-count">520 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">كرة قدم</span>
+                            <span class="subcategory">سلة</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- الفئة 16 -->
+                <a href="manga-list.html?category=slice-of-life" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/16a085/ffffff?text=حياة يومية" alt="حياة يومية">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">حياة يومية</h3>
+                        <span class="category-count">1,210 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">مدرسة</span>
+                            <span class="subcategory">عمل</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- الفئة 17 -->
+                <a href="manga-list.html?category=historical" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/c0392b/ffffff?text=تاريخي" alt="تاريخي">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">تاريخي</h3>
+                        <span class="category-count">780 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">ساموراي</span>
+                            <span class="subcategory">قرون وسطى</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- قسم الفئات الفرعية 4 -->
+        <div class="subcategory-section">
+            <div class="section-header">
+                <h2 class="section-title">فئات أخرى</h2>
+                <a href="manga-list.html?filter=others" class="view-all">عرض الكل</a>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- الفئة 18 -->
+                <a href="manga-list.html?category=psychological" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=نفسي" alt="نفسي">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">نفسي</h3>
+                        <span class="category-count">430 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">اضطرابات</span>
+                            <span class="subcategory">تلاعب</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- الفئة 19 -->
+                <a href="manga-list.html?category=supernatural" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/2980b9/ffffff?text=خارق" alt="خارق">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">خارق</h3>
+                        <span class="category-count">1,120 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">أشباح</span>
+                            <span class="subcategory">قدرات</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- الفئة 20 -->
+                <a href="manga-list.html?category=mecha" class="category-card">
+                    <div class="category-img">
+                        <img src="https://via.placeholder.com/300x200/7f8c8d/ffffff?text=ميكا" alt="ميكا">
+                    </div>
+                    <div class="category-content">
+                        <h3 class="category-title">ميكا</h3>
+                        <span class="category-count">320 مانجا</span>
+                        <div class="subcategories">
+                            <span class="subcategory">روبوتات</span>
+                            <span class="subcategory">حروب</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- تذييل الصفحة (يجب استبداله بتذييلك الفعلي) -->
+    <footer>...</footer>
+
+    <!-- تأثيرات إضافية -->
+    <script>
+        // إضافة تأثيرات للبطاقات عند التمرير
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.category-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>

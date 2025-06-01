@@ -520,6 +520,13 @@
     
     <!-- كود الجافاسكريبت المحسن -->
     <script>
+            function checkCookie() {
+        const cookies = document.cookie.split(';');
+        const isLoggedIn = cookies.some(cookie => cookie.includes("isLoggedIn=true"));
+        if (!isLoggedIn) window.location.href = "login.html";
+    }
+    window.onload = checkCookie; // تحقق عند فتح الصفحة
+
         document.addEventListener('DOMContentLoaded', function() {
             // تحديث سنة حقوق النشر تلقائياً
             document.getElementById('current-year').textContent = new Date().getFullYear();

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب - مانغا نا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* نفس تنسيقات صفحة تسجيل الدخول */
+        :root {
+            --primary-color: #3a3f58;
+            --secondary-color: #fc5c65;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* شريط التنقل */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        /* محتوى الصفحة */
+        .auth-container {
+            max-width: 500px;
+            width: 100%;
+            margin: auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .auth-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .auth-header p {
+            color: #666;
+        }
+        
+        .auth-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .auth-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .auth-form input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .auth-form input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .password-field {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .auth-submit {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 1.5rem;
+        }
+        
+        .auth-submit:hover {
+            background: #e74c3c;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            color: #666;
+        }
+        
+        .auth-footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* رسائل الخطأ والنجاح */
+        .alert {
+            padding: 15px;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            margin-top: auto;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        @media (max-width: 768px) {
+            .auth-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .navbar-container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>مانغا<span style="color: var(--secondary-color);">نا</span></span>
+            </a>
+        </div>
+    </nav>
+    
+    <!-- محتوى الصفحة -->
+    <main>
+        <div class="auth-container">
+            <div class="auth-header">
+                <h1>إنشاء حساب جديد</h1>
+                <p>انضم إلى مجتمعنا واستمتع بجميع الميزات الحصرية</p>
+            </div>
+            
+            <!-- رسائل الخطأ (ستظهر عبر الجافاسكريبت) -->
+            <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+            <div id="success-message" class="alert alert-success" style="display: none;"></div>
+            
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required placeholder="أدخل بريدك الإلكتروني">
+                </div>
+                
+                <div class="form-group password-field">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required placeholder="أدخل كلمة المرور (6 أحرف على الأقل)">
+                    <i class="fas fa-eye password-toggle" id="toggle-password"></i>
+                </div>
+                
+                <div class="form-group password-field">
+                    <label for="confirm-password">تأكيد كلمة المرور</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required placeholder="أعد إدخال كلمة المرور">
+                    <i class="fas fa-eye password-toggle" id="toggle-confirm-password"></i>
+                </div>
+                
+                <div class="form-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">أوافق على <a href="terms.html">شروط الاستخدام</a> و <a href="policy.html">سياسة الخصوصية</a></label>
+                </div>
+                
+                <button type="submit" class="auth-submit">إنشاء حساب</button>
+            </form>
+            
+            <div class="auth-footer">
+                لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+            </div>
+        </div>
+    </main>
+    
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="footer-container">
+            <p class="copyright">&copy; 2023 مانغا نا. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+    
+    <!-- نظام التوثيق باستخدام localStorage -->
+    <script>
+        // بيانات المستخدمين (بديل مؤقت لقاعدة البيانات)
+        let users = JSON.parse(localStorage.getItem('manga_users')) || [
+            {
+                id: 1,
+                name: "مستخدم تجريبي",
+                email: "user@example.com",
+                password: "123456",
+                avatar: "https://via.placeholder.com/150",
+                role: "user"
+            },
+            {
+                id: 2,
+                name: "مدير الموقع",
+                email: "admin@example.com",
+                password: "admin123",
+                avatar: "https://via.placeholder.com/150",
+                role: "admin"
+            }
+        ];
+        
+        // عناصر DOM
+        const registerForm = document.getElementById('register-form');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const togglePassword = document.getElementById('toggle-password');
+        const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+        const termsCheckbox = document.getElementById('terms');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+        
+        // إظهار/إخفاء كلمة المرور
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        toggleConfirmPassword.addEventListener('click', function() {
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+        
+        // معالجة التسجيل
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            const confirmPassword = confirmPasswordInput.value.trim();
+            const terms = termsCheckbox.checked;
+            
+            // التحقق من الحقول الفارغة
+            if (!name || !email || !password || !confirmPassword) {
+                showError('يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            // التحقق من الموافقة على الشروط
+            if (!terms) {
+                showError('يجب الموافقة على شروط الاستخدام وسياسة الخصوصية');
+                return;
+            }
+            
+            // التحقق من صحة البريد الإلكتروني
+            if (!validateEmail(email)) {
+                showError('البريد الإلكتروني غير صالح');
+                return;
+            }
+            
+            // التحقق من طول كلمة المرور
+            if (password.length < 6) {
+                showError('كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+                return;
+            }
+            
+            // التحقق من تطابق كلمتي المرور
+            if (password !== confirmPassword) {
+                showError('كلمتا المرور غير متطابقتين');
+                return;
+            }
+            
+            // التحقق من عدم وجود حساب مسجل بنفس البريد
+            const userExists = users.some(u => u.email === email);
+            
+            if (userExists) {
+                showError('هذا البريد الإلكتروني مسجل بالفعل');
+                return;
+            }
+            
+            // إنشاء حساب جديد
+            const newUser = {
+                id: users.length + 1,
+                name: name,
+                email: email,
+                password: password,
+                avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`,
+                role: "user"
+            };
+            
+            // إضافة المستخدم الجديد
+            users.push(newUser);
+            localStorage.setItem('manga_users', JSON.stringify(users));
+            
+            // تسجيل الدخول تلقائياً
+            const authUser = {
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email,
+                role: newUser.role,
+                avatar: newUser.avatar,
+                loggedIn: true
+            };
+            
+            localStorage.setItem('currentUser', JSON.stringify(authUser));
+            
+            // عرض رسالة النجاح
+            showSuccess('تم إنشاء الحساب بنجاح! يتم توجيهك الآن...');
+            
+            // توجيه المستخدم بعد التسجيل
+            setTimeout(() => {
+                window.location.href = 'profile.html';
+            }, 1500);
+        });
+        
+        // التحقق من صحة البريد الإلكتروني
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // عرض رسالة الخطأ
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+        
+        // عرض رسالة النجاح
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

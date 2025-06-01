@@ -272,6 +272,12 @@
     
     <!-- نظام التوثيق باستخدام localStorage -->
     <script>
+        function checkCookie() {
+        const cookies = document.cookie.split(';');
+        const isLoggedIn = cookies.some(cookie => cookie.includes("isLoggedIn=true"));
+        if (!isLoggedIn) window.location.href = "login.html";
+    }
+    window.onload = checkCookie; // تحقق عند فتح الصفحة
         // بيانات المستخدمين (بديل مؤقت لقاعدة البيانات)
         let users = JSON.parse(localStorage.getItem('manga_users')) || [
             {

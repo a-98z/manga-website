@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقع مانغا - قراءة المانغا العربية</title>
-    <meta name="description" content="موقع لقراءة المانغا والمانهوا العربية مجاناً">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>مانغا نا - الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* التنسيقات الأساسية (نفسها كما في الصفحات الأخرى) */
         :root {
             --primary-color: #3a3f58;
             --secondary-color: #fc5c65;
-            --dark-color: #2c2c2c;
             --light-color: #f5f5f5;
+            --dark-color: #333;
         }
-        /* الربط حق زر العوده في صفحة التنسيقات */
-        <link rel="stylesheet" href="styles.css">
+        
         * {
             margin: 0;
             padding: 0;
@@ -25,11 +25,16 @@
         body {
             background-color: var(--light-color);
             color: var(--dark-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
+        /* شريط التنقل */
         .navbar {
             background-color: var(--primary-color);
-            padding: 15px 0;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -46,9 +51,15 @@
         
         .logo {
             color: white;
-            font-size: 24px;
+            font-size: 1.8rem;
             font-weight: bold;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
         }
         
         .nav-links {
@@ -57,177 +68,174 @@
         }
         
         .nav-links li {
-            margin-left: 20px;
+            margin-left: 1.5rem;
         }
         
         .nav-links a {
             color: white;
             text-decoration: none;
+            font-size: 1.1rem;
             transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
         }
         
         .nav-links a:hover {
             color: var(--secondary-color);
         }
         
-        .search-bar {
+        .nav-links a.active {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .user-actions {
             display: flex;
             align-items: center;
         }
         
-        .search-bar input {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px 0 0 20px;
-            outline: none;
-        }
-        
-        .search-bar button {
-            background-color: var(--secondary-color);
+        /* زر الدخول/التسجيل */
+        .auth-buttons a {
             color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 0 20px 20px 0;
-            cursor: pointer;
+            text-decoration: none;
+            margin-left: 1rem;
+            font-size: 1rem;
         }
         
+        .auth-buttons .btn {
+            background: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .auth-buttons .btn:hover {
+            background: #e74c3c;
+        }
+        
+        /* المحتوى الرئيسي */
         .hero {
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x600');
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/manga-hero.jpg');
             background-size: cover;
             background-position: center;
-            height: 400px;
+            height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
+            margin-bottom: 3rem;
         }
         
         .hero-content h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
         }
         
         .hero-content p {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .btn {
+        .btn-hero {
             display: inline-block;
-            background-color: var(--secondary-color);
+            background: var(--secondary-color);
             color: white;
-            padding: 12px 30px;
+            padding: 1rem 2.5rem;
             border-radius: 30px;
             text-decoration: none;
+            font-size: 1.1rem;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         
-        .btn:hover {
-            background-color: #e74c3c;
+        .btn-hero:hover {
+            background: #e74c3c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
-        .popular-manga {
-            padding: 50px 0;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* قسم المجتمع في الصفحة الرئيسية */
+        .community-section {
+            padding: 4rem 0;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
         
         .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 32px;
+            font-size: 2rem;
             color: var(--primary-color);
+            margin-bottom: 1rem;
         }
         
-        .manga-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
-            padding: 0 20px;
-        }
-        
-        .manga-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .manga-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .manga-cover {
-            height: 250px;
-            overflow: hidden;
-        }
-        
-        .manga-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .manga-card:hover .manga-cover img {
-            transform: scale(1.05);
-        }
-        
-        .manga-info {
-            padding: 15px;
-        }
-        
-        .manga-title {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        
-        .manga-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #777;
-            font-size: 14px;
-        }
-        
-        .categories {
-            background-color: var(--primary-color);
-            padding: 50px 0;
-            color: white;
-        }
-        
-        .categories-container {
-            max-width: 1200px;
+        .section-description {
+            color: #666;
+            max-width: 700px;
             margin: 0 auto;
         }
         
-        .category-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+        .community-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 0 20px;
         }
         
-        .category-item {
-            background-color: rgba(255,255,255,0.1);
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: background-color 0.3s;
-        }
-        
-        .category-item:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 50px 0 20px;
+        .feature-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 2rem;
             text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: auto;
         }
         
         .footer-container {
@@ -235,14 +243,13 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 2rem;
             padding: 0 20px;
-            text-align: right;
         }
         
         .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 20px;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
             color: var(--secondary-color);
         }
         
@@ -251,11 +258,11 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 0.8rem;
         }
         
         .footer-column ul li a {
-            color: #bbb;
+            color: #ddd;
             text-decoration: none;
             transition: color 0.3s;
         }
@@ -266,322 +273,153 @@
         
         .social-links {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         
         .social-links a {
             color: white;
-            background-color: rgba(255,255,255,0.1);
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            background: rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         
         .social-links a:hover {
-            background-color: var(--secondary-color);
+            background: var(--secondary-color);
+            transform: translateY(-3px);
         }
         
         .copyright {
-            margin-top: 30px;
-            padding-top: 20px;
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bbb;
-            font-size: 14px;
+            color: #aaa;
+            font-size: 0.9rem;
         }
         
+        /* تصميم متجاوب */
         @media (max-width: 768px) {
             .navbar-container {
                 flex-direction: column;
             }
             
-            .logo {
-                margin-bottom: 15px;
-            }
-            
             .nav-links {
-                margin-bottom: 15px;
-                flex-direction: column;
-                align-items: center;
+                margin: 1rem 0;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
             .nav-links li {
-                margin: 5px 0;
+                margin: 0 0.5rem 0.5rem;
+            }
+            
+            .user-actions {
+                margin: 1rem 0;
             }
             
             .hero-content h1 {
-                font-size: 36px;
+                font-size: 2rem;
             }
             
             .hero-content p {
-                font-size: 18px;
-            }
-            
-            .manga-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- شريط التنقل العلوي -->
+    <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="index.html" class="logo">مانغا<span style="color: var(--secondary-color);">نا</span></a>
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>مانغا<span style="color: var(--secondary-color);">نا</span></span>
+            </a>
             
             <ul class="nav-links">
-                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="index.html" class="active">الرئيسية</a></li>
                 <li><a href="manga-list.html">قائمة المانغا</a></li>
                 <li><a href="categories.html">الفئات</a></li>
                 <li><a href="updates.html">المحدثات</a></li>
-                 <li><a href="categories.html">المجتمع</a></li>
+                <li><a href="community.html">المجتمع</a></li>
                 <li><a href="about.html">عن الموقع</a></li>
             </ul>
             
-            <div class="search-bar">
-                <input type="text" placeholder="ابحث عن مانغا...">
-                <button><i class="fas fa-search"></i></button>
+            <div class="user-actions">
+                <!-- حالة غير مسجل الدخول -->
+                <div class="auth-buttons" id="guest-view">
+                    <a href="login.html">تسجيل الدخول</a>
+                    <a href="register.html" class="btn">إنشاء حساب</a>
+                </div>
+                
+                <!-- حالة مسجل الدخول (ستظهر عبر الجافاسكريبت) -->
+                <div class="user-profile" id="user-view" style="display: none;">
+                    <div class="user-avatar">
+                        <img src="" alt="صورة المستخدم" id="user-avatar">
+                    </div>
+                    <span id="username">مرحباً، محمد</span>
+                    <div class="user-dropdown">
+                        <a href="profile.html"><i class="fas fa-user"></i> الملف الشخصي</a>
+                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="my-list.html"><i class="fas fa-bookmark"></i> قائمتي</a>
+                        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
     
-    <!-- قسم الهيرو (الصورة الرئيسية) -->
+    <!-- قسم الهيرو -->
     <section class="hero">
         <div class="hero-content">
-            <h1>اقرأ أفضل المانغا العربية</h1>
-            <p>آلاف الفصول من المانغا والمانهوا متاحة للقراءة مجاناً</p>
-            <a href="manga-list.html" class="btn">استكشف الآن</a>
-        </div>
-    </section>
-    
-    <!-- قسم المانغا الشائعة -->
-    <section class="popular-manga">
-        <h2 class="section-title">المانغا الشائعة</h2>
-        
-        <div class="manga-grid">
-            <!-- مانغا 1 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="ون بيس">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">ون بيس</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 1054</span>
-                        <span><i class="fas fa-eye"></i> 1.2M</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 2 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="هجوم العمالقة">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">هجوم العمالقة</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 139</span>
-                        <span><i class="fas fa-eye"></i> 980K</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 3 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="ناروتو">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">ناروتو</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 700</span>
-                        <span><i class="fas fa-eye"></i> 2.5M</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 4 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="بليتش">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">بليتش</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 686</span>
-                        <span><i class="fas fa-eye"></i> 1.8M</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 5 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="بلاك كلوفر">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">بلاك كلوفر</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 332</span>
-                        <span><i class="fas fa-eye"></i> 750K</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا 6 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="سباي فاميلي">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">سباي فاميلي</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 72</span>
-                        <span><i class="fas fa-eye"></i> 1.1M</span>
-                    </div>
-                </div>
+            <h1>أهلاً بك في عالم المانغا العربي</h1>
+            <p>أكبر مكتبة عربية للمانغا والمانهوا، اقرأ أحدث الإصدارات، انضم إلى مجتمعنا، واحصل على تجربة قراءة فريدة</p>
+            <div>
+                <a href="manga-list.html" class="btn-hero">استكشف المجموعة</a>
+                <a href="register.html" class="btn-hero" style="background: transparent; border: 2px solid white; margin-right: 1rem;">انضم إلينا</a>
             </div>
         </div>
     </section>
     
-   <!-- قسم الفئات في الصفحة الرئيسية -->
-<section class="categories">
-    <div class="categories-container">
-        <h2 class="section-title">تصفح حسب الفئة</h2>
-        
-        <div class="category-list">
-            <!-- الفئة 1: أكشن -->
-            <a href="categories.html#action" class="category-item">أكشن</a>
-            
-            <!-- الفئة 2: مغامرات -->
-            <a href="categories.html#adventure" class="category-item">مغامرات</a>
-            
-            <!-- الفئة 3: كوميدي -->
-            <a href="categories.html#comedy" class="category-item">كوميدي</a>
-            
-            <!-- الفئة 4: دراما -->
-            <a href="categories.html#drama" class="category-item">دراما</a>
-            
-            <!-- الفئة 5: فانتازيا -->
-            <a href="categories.html#fantasy" class="category-item">فانتازيا</a>
-            
-            <!-- الفئة 6: رعب -->
-            <a href="categories.html#horror" class="category-item">رعب</a>
-            
-            <!-- الفئة 7: غموض -->
-            <a href="categories.html#mystery" class="category-item">غموض</a>
-            
-            <!-- الفئة 8: رومانسي -->
-            <a href="categories.html#romance" class="category-item">رومانسي</a>
-            
-            <!-- الفئة 9: خيال علمي -->
-            <a href="categories.html#sci-fi" class="category-item">خيال علمي</a>
-            
-            <!-- الفئة 10: شونين -->
-            <a href="categories.html#shounen" class="category-item">شونين</a>
-            
-            <!-- الفئة 11: شوجو -->
-            <a href="categories.html#shoujo" class="category-item">شوجو</a>
-            
-            <!-- الفئة 12: سيينن -->
-            <a href="categories.html#seinen" class="category-item">سيينن</a>
+    <!-- قسم المجتمع في الصفحة الرئيسية -->
+    <section class="community-section">
+        <div class="section-header">
+            <h2 class="section-title">انضم إلى مجتمعنا النشط</h2>
+            <p class="section-description">تواصل مع آلاف عشاق المانغا، شارك في النقاشات، وكن جزءاً من فعالياتنا الحصرية</p>
         </div>
-    </div>
-</section>
-    
-    <!-- قسم المانغا المحدثة -->
-    <section class="popular-manga">
-        <h2 class="section-title">أحدث الإضافات</h2>
         
-        <div class="manga-grid">
-            <!-- مانغا محدثة 1 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="سولو ليفيلينج">
+        <div class="community-features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-comments"></i>
                 </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">سولو ليفيلينج</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 179</span>
-                        <span>منذ ساعتين</span>
-                    </div>
-                </div>
+                <h3 class="feature-title">منتدى النقاش</h3>
+                <p class="feature-description">شارك في النقاشات مع عشاق المانغا حول مختلف المواضيع والسلاسل</p>
+                <a href="community.html#forum" class="btn" style="display: inline-block;">المشاركة الآن</a>
             </div>
             
-            <!-- مانغا محدثة 2 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="تومو-تشان فتاة!">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-book-reader"></i>
                 </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">تومو-تشان فتاة!</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 963</span>
-                        <span>منذ 5 ساعات</span>
-                    </div>
-                </div>
+                <h3 class="feature-title">نادي القراءة</h3>
+                <p class="feature-description">انضم إلى نادي القراءة الشهري حيث نختار معاً مانغا شهيرة لنقرأها معاً</p>
+                <a href="community.html#book-club" class="btn" style="display: inline-block;">تعرف أكثر</a>
             </div>
             
-            <!-- مانغا محدثة 3 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="ذا برومكسد ون">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
                 </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">ذا برومكسد ون</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 45</span>
-                        <span>منذ يوم</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا محدثة 4 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="ما شاء الله">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">ما شاء الله</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 32</span>
-                        <span>منذ يوم</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا محدثة 5 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="بطل الدرع">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">بطل الدرع</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 87</span>
-                        <span>منذ يومين</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- مانغا محدثة 6 -->
-            <div class="manga-card">
-                <div class="manga-cover">
-                    <img src="https://via.placeholder.com/200x300" alt="نهاية العالم">
-                </div>
-                <div class="manga-info">
-                    <h3 class="manga-title">نهاية العالم</h3>
-                    <div class="manga-meta">
-                        <span>الفصل 64</span>
-                        <span>منذ 3 أيام</span>
-                    </div>
-                </div>
+                <h3 class="feature-title">المسابقات</h3>
+                <p class="feature-description">شارك في مسابقاتنا الشهرية واربح جوائز قيمة وهدايا حصرية</p>
+                <a href="community.html#contests" class="btn" style="display: inline-block;">شروط المشاركة</a>
             </div>
         </div>
     </section>
@@ -591,7 +429,13 @@
         <div class="footer-container">
             <div class="footer-column">
                 <h3>عن الموقع</h3>
-                <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب.</p>
+                <p>مانغا نا هي وجهتك الأولى لقراءة المانغا العربية بجودة عالية وترجمات احترافية.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
             </div>
             
             <div class="footer-column">
@@ -599,44 +443,74 @@
                 <ul>
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="manga-list.html">قائمة المانغا</a></li>
-                    <li><a href="categories.html">الفئات</a></li>
-                    <li><a href="updates.html">المحدثات</a></li>
                     <li><a href="community.html">المجتمع</a></li>
-                    <li><a href="about.html">اتصل بنا</a></li>
+                    <li><a href="profile.html">الملف الشخصي</a></li>
+                    <li><a href="about.html">عن الموقع</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
-                <h3>المساعدة</h3>
+                <h3>الحساب</h3>
                 <ul>
-                    <li><a href="#">الأسئلة الشائعة</a></li>
-                    <li><a href="#">شروط الاستخدام</a></li>
-                    <li><a href="#">سياسة الخصوصية</a></li>
-                    <li><a href="#">الإبلاغ عن مشكلة</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                    <li><a href="register.html">إنشاء حساب</a></li>
+                    <li><a href="forgot-password.html">استعادة كلمة المرور</a></li>
+                    <li><a href="profile-settings.html">إعدادات الحساب</a></li>
                 </ul>
             </div>
         </div>
         
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
-        </div>
-        
         <div class="copyright">
-            &copy; 2023 موقع مانغا نا. جميع الحقوق محفوظة.
+            &copy; 2023 مانغا نا. جميع الحقوق محفوظة.
         </div>
     </footer>
     
+    <!-- كود الجافاسكريبت للربط بين الصفحات -->
     <script>
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.backgroundColor = 'rgba(58, 63, 88, 0.9)';
+        // التحقق من حالة تسجيل الدخول عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const guestView = document.getElementById('guest-view');
+            const userView = document.getElementById('user-view');
+            
+            if (currentUser && currentUser.loggedIn) {
+                // عرض واجهة المستخدم المسجل
+                guestView.style.display = 'none';
+                userView.style.display = 'flex';
+                
+                // تعبئة بيانات المستخدم
+                document.getElementById('username').textContent = `مرحباً، ${currentUser.name.split(' ')[0]}`;
+                document.getElementById('user-avatar').src = currentUser.avatar;
             } else {
-                navbar.style.backgroundColor = 'var(--primary-color)';
+                // عرض واجهة الزائر
+                guestView.style.display = 'flex';
+                userView.style.display = 'none';
             }
+            
+            // تأثيرات التمرير لشريط التنقل
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(58, 63, 88, 0.95)';
+                } else {
+                    navbar.style.backgroundColor = 'var(--primary-color)';
+                }
+            });
+            
+            // الانتقال السلس بين الصفحات
+            document.querySelectorAll('a[href^=""]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.href && !this.href.includes('#')) {
+                        e.preventDefault();
+                        document.body.style.opacity = '0';
+                        document.body.style.transition = 'opacity 0.3s';
+                        
+                        setTimeout(() => {
+                            window.location.href = this.href;
+                        }, 300);
+                    }
+                });
+            });
         });
     </script>
 </body>

@@ -487,173 +487,24 @@
             margin-top: 2rem;
         }
         
-/* تذييل  الصفحة */
+        /* تذييل الصفحة */
         footer {
-            background-color: var(--footer-color);
+            background-color: var(--primary-color);
             color: white;
-            padding: 50px 0 20px;
-            margin-top: 50px;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            text-align: center;
         }
         
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .footer-column {
-            margin-bottom: 20px;
-        }
-        
-        .footer-column h3 {
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-            font-size: 18px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary-color);
-        }
-        
-        .footer-column p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: #ddd;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-            display: block;
-            padding: 5px 0;
-        }
-        
-        .footer-column ul li a:hover {
-            color: var(--secondary-color);
-            padding-right: 5px;
-        }
-        
-        .social-links {
-            text-align: center;
-            margin: 30px 0;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            margin: 0 5px;
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
         }
         
         .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #aaa;
-            font-size: 14px;
-        }
-        
-        /* قسم المانجا العشوائية في الفوتر */
-        .random-manga {
-            background-color: rgba(0,0,0,0.1);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        
-        .random-manga-title {
-            font-size: 16px;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-        
-        .random-manga-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .random-manga-item {
-            background-color: rgba(255,255,255,0.1);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 13px;
-            transition: all 0.3s;
-        }
-        
-        .random-manga-item:hover {
-            background-color: var(--secondary-color);
-            cursor: pointer;
-        }
-        
-        /* التصميم المتجاوب */
-        @media (max-width: 768px) {
-            .navbar-container {
-                flex-direction: column;
-            }
-            
-            .nav-links {
-                margin: 15px 0;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-links li {
-                margin: 5px 10px;
-            }
-            
-            .search-bar {
-                margin-top: 15px;
-                width: 100%;
-            }
-            
-            .search-bar input {
-                width: 100%;
-            }
-            
-            .filter-bar {
-                flex-direction: column;
-            }
-            
-            .manga-list-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 15px;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
         }
         
         /* تصميم متجاوب */
@@ -765,106 +616,6 @@
             margin-top: 0.5rem;
             display: none;
         }
-            <footer>
-        <div class="footer-container">
-            <div class="footer-column">
-                <h3>عن الموقع</h3>
-                <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب مع تحديث يومي لأحدث الإصدارات.</p>
-                <div class="random-manga">
-                    <div class="random-manga-title">مانجا عشوائية</div>
-                    <div class="random-manga-list" id="randomMangaList">
-                        <!-- سيتم ملؤها بالجافاسكريبت -->
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-    <h3>روابط سريعة</h3>
-    <ul>
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="manga-list.html">قائمة المانجا</a></li>
-        <li><a href="categories.html">الاقسام</a></li>
-        <li><a href="updates.html">الشات</a></li>
-        <li><a href="society.html">المجتمع</a></li>
-        <li><a href="login.html">تسجيل الدخول</a></li>
-        <li><a href="register.html">إنشاء حساب</a></li>
-    </ul>
-</div>
-            
-            <div class="footer-column">
-                <h3>المساعدة</h3>
-                <ul>
-                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
-                    <li><a href="terms.html">شروط الاستخدام</a></li>
-                    <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                    <li><a href="contact.html">اتصل بنا</a></li>
-                    <li><a href="report.html">الإبلاغ عن مشكلة</a></li>
-                </ul>
-                
-                <h3 style="margin-top: 20px;">إحصائيات الموقع</h3>
-                <p>عدد المانجا: <span id="mangaCount">1,245</span></p>
-                <p>عدد الفصول: <span id="chaptersCount">24,587</span></p>
-                <p>عدد الأعضاء: <span id="usersCount">58,421</span></p>
-            </div>
-        </div>
-        
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
-            <a href="#"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        
-        <div class="copyright">
-            &copy; <span id="currentYear"></span> موقع مانغا نا. جميع الحقوق محفوظة.
-        </div>
-    </footer>
-
-    <script>
-        // إضافة تأثير التمرير لشريط التنقل
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // عرض مانجا عشوائية في الفوتر
-        document.addEventListener('DOMContentLoaded', function() {
-            // قائمة المانجا
-            const mangaList = [
-                "ون بيس", "هجوم العمالقة", "ناروتو شيبودن", "بليتش", 
-                "بلاك كلوفر", "سباي x فاميلي", "سولو ليفيلينج", "ذا برومكسد ون",
-                "جومونج كوكون", "ماشل: بلاي هارد", "تطوعي فقط!", "أبطال الكرة",
-                "كونان المحقق", "دراغون بول", "هانتر x هانتر", "مقهى السعادة",
-                "الطبيب المتهور", "المحقق المليونير", "أكاديمية الأبطال", "أرض العظماء"
-            ];
-            
-            // عرض 8 عناصر عشوائية
-            const randomMangaContainer = document.getElementById('randomMangaList');
-            const shuffled = mangaList.sort(() => 0.5 - Math.random());
-            let selected = shuffled.slice(0, 8);
-            
-            selected.forEach(manga => {
-                const item = document.createElement('div');
-                item.className = 'random-manga-item';
-                item.textContent = manga;
-                randomMangaContainer.appendChild(item);
-            });
-            
-            // تحديث سنة حقوق النشر
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-            
-            // إحصائيات عشوائية (لأغراض العرض فقط)
-            document.getElementById('mangaCount').textContent = Math.floor(Math.random() * 5000) + 1000;
-            document.getElementById('chaptersCount').textContent = Math.floor(Math.random() * 50000) + 20000;
-            document.getElementById('usersCount').textContent = Math.floor(Math.random() * 100000) + 50000;
-        });
-
     </style>
 </head>
 <body>

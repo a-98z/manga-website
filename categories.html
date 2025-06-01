@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تصنيفات المانجا - مانجا نا</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
         :root {
@@ -171,6 +172,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             position: relative;
+            display: block;
+            text-decoration: none;
         }
         
         .category-card:hover {
@@ -314,6 +317,7 @@
         
         .footer-column ul {
             list-style: none;
+            padding: 0;
         }
         
         .footer-column ul li {
@@ -347,6 +351,7 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.3s;
+            text-decoration: none;
         }
         
         .social-links a:hover {
@@ -378,7 +383,7 @@
             }
             
             .nav-links li {
-                margin: 5px;
+                margin: 5px 10px;
             }
             
             .search-bar {
@@ -403,6 +408,26 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
+            
+            .footer-column {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .view-all {
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -412,18 +437,18 @@
         <div class="navbar-container">
             <a href="index.html" class="logo">مانغا<span>نا</span></a>
             
-     <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="manga-list.html">قائمة المانجا</a></li>
-    <li><a href="updates.html">الشات</a></li>
-    <li><a href="categories.html">الاقسام</a></li>
-    <li><a href="society.html">المجتمع</a></li>
-    <li><a href="profile.html">الملف الشخصي</a></li>
-</ul>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="updates.html">الشات</a></li>
+                <li><a href="categories.html" class="active">الاقسام</a></li>
+                <li><a href="society.html">المجتمع</a></li>
+                <li><a href="profile.html">الملف الشخصي</a></li>
+            </ul>
             
             <div class="search-bar">
-                <input type="text" placeholder="ابحث عن مانجا...">
-                <button><i class="fas fa-search"></i></button>
+                <input type="text" placeholder="ابحث عن مانجا..." aria-label="بحث عن مانجا">
+                <button type="submit"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </nav>
@@ -432,7 +457,7 @@
     <div class="container">
         <!-- قسم الفئات الرئيسية -->
         <div class="section-header">
-            <h2 class="section-title">الفئات الرئيسية</h2>
+            <h1 class="section-title">الفئات الرئيسية</h1>
             <a href="manga-list.html?filter=all" class="view-all">عرض الكل</a>
         </div>
         
@@ -441,10 +466,10 @@
             <a href="manga-list.html?category=action" class="category-card" id="action">
                 <div class="category-badge">رائج</div>
                 <div class="category-img">
-                    <img src="https://via.placeholder.com/300x200/3a3f58/ffffff?text=أكشن" alt="أكشن">
+                    <img src="https://via.placeholder.com/300x200/3a3f58/ffffff?text=أكشن" alt="مانجا أكشن">
                 </div>
                 <div class="category-content">
-                    <h3 class="category-title">أكشن</h3>
+                    <h2 class="category-title">أكشن</h2>
                     <span class="category-count">1,245 مانجا</span>
                     <div class="subcategories">
                         <span class="subcategory">قتال</span>
@@ -457,10 +482,10 @@
             <!-- الفئة 2 -->
             <a href="manga-list.html?category=adventure" class="category-card" id="adventure">
                 <div class="category-img">
-                    <img src="https://via.placeholder.com/300x200/fc5c65/ffffff?text=مغامرات" alt="مغامرات">
+                    <img src="https://via.placeholder.com/300x200/fc5c65/ffffff?text=مغامرات" alt="مانجا مغامرات">
                 </div>
                 <div class="category-content">
-                    <h3 class="category-title">مغامرات</h3>
+                    <h2 class="category-title">مغامرات</h2>
                     <span class="category-count">980 مانجا</span>
                     <div class="subcategories">
                         <span class="subcategory">رحلات</span>
@@ -472,10 +497,10 @@
             <!-- الفئة 3 -->
             <a href="manga-list.html?category=comedy" class="category-card" id="comedy">
                 <div class="category-img">
-                    <img src="https://via.placeholder.com/300x200/2c2c2c/ffffff?text=كوميدي" alt="كوميدي">
+                    <img src="https://via.placeholder.com/300x200/2c2c2c/ffffff?text=كوميدي" alt="مانجا كوميدي">
                 </div>
                 <div class="category-content">
-                    <h3 class="category-title">كوميدي</h3>
+                    <h2 class="category-title">كوميدي</h2>
                     <span class="category-count">1,750 مانجا</span>
                     <div class="subcategories">
                         <span class="subcategory">كوميديا رومانسية</span>
@@ -488,10 +513,10 @@
             <a href="manga-list.html?category=drama" class="category-card" id="drama">
                 <div class="category-badge">جديد</div>
                 <div class="category-img">
-                    <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=دراما" alt="دراما">
+                    <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=دراما" alt="مانجا دراما">
                 </div>
                 <div class="category-content">
-                    <h3 class="category-title">دراما</h3>
+                    <h2 class="category-title">دراما</h2>
                     <span class="category-count">890 مانجا</span>
                     <div class="subcategories">
                         <span class="subcategory">مأساوي</span>
@@ -503,10 +528,10 @@
             <!-- الفئة 5 -->
             <a href="manga-list.html?category=fantasy" class="category-card" id="fantasy">
                 <div class="category-img">
-                    <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=فانتازيا" alt="فانتازيا">
+                    <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=فانتازيا" alt="مانجا فانتازيا">
                 </div>
                 <div class="category-content">
-                    <h3 class="category-title">فانتازيا</h3>
+                    <h2 class="category-title">فانتازيا</h2>
                     <span class="category-count">2,150 مانجا</span>
                     <div class="subcategories">
                         <span class="subcategory">عالم خيالي</span>
@@ -528,7 +553,7 @@
                 <!-- الفئة 6 -->
                 <a href="manga-list.html?category=shounen" class="category-card" id="shounen">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=شونين" alt="شونين">
+                        <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=شونين" alt="مانجا شونين">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">شونين</h3>
@@ -539,7 +564,7 @@
                 <!-- الفئة 7 -->
                 <a href="manga-list.html?category=shoujo" class="category-card" id="shoujo">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=شوجو" alt="شوجو">
+                        <img src="https://via.placeholder.com/300x200/e91e63/ffffff?text=شوجو" alt="مانجا شوجو">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">شوجو</h3>
@@ -550,7 +575,7 @@
                 <!-- الفئة 8 -->
                 <a href="manga-list.html?category=seinen" class="category-card" id="seinen">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/34495e/ffffff?text=سينين" alt="سينين">
+                        <img src="https://via.placeholder.com/300x200/34495e/ffffff?text=سينين" alt="مانجا سينين">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">سينين</h3>
@@ -561,7 +586,7 @@
                 <!-- الفئة 9 -->
                 <a href="manga-list.html?category=josei" class="category-card" id="josei">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/9b59b6/ffffff?text=جوسيه" alt="جوسيه">
+                        <img src="https://via.placeholder.com/300x200/9b59b6/ffffff?text=جوسيه" alt="مانجا جوسيه">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">جوسيه</h3>
@@ -583,7 +608,7 @@
                 <a href="manga-list.html?category=romance" class="category-card" id="romance">
                     <div class="category-badge">شائع</div>
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/f1c40f/ffffff?text=رومانسي" alt="رومانسي">
+                        <img src="https://via.placeholder.com/300x200/f1c40f/ffffff?text=رومانسي" alt="مانجا رومانسي">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">رومانسي</h3>
@@ -598,7 +623,7 @@
                 <!-- الفئة 11 -->
                 <a href="manga-list.html?category=sci-fi" class="category-card" id="sci-fi">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/1abc9c/ffffff?text=خيال علمي" alt="خيال علمي">
+                        <img src="https://via.placeholder.com/300x200/1abc9c/ffffff?text=خيال علمي" alt="مانجا خيال علمي">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">خيال علمي</h3>
@@ -613,7 +638,7 @@
                 <!-- الفئة 12 -->
                 <a href="manga-list.html?category=horror" class="category-card" id="horror">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/2c3e50/ffffff?text=رعب" alt="رعب">
+                        <img src="https://via.placeholder.com/300x200/2c3e50/ffffff?text=رعب" alt="مانجا رعب">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">رعب</h3>
@@ -628,7 +653,7 @@
                 <!-- الفئة 13 -->
                 <a href="manga-list.html?category=mystery" class="category-card" id="mystery">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/7f8c8d/ffffff?text=غموض" alt="غموض">
+                        <img src="https://via.placeholder.com/300x200/7f8c8d/ffffff?text=غموض" alt="مانجا غموض">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">غموض</h3>
@@ -654,7 +679,7 @@
                 <a href="manga-list.html?category=isekai" class="category-card" id="isekai">
                     <div class="category-badge">ترند</div>
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/27ae60/ffffff?text=Isekai" alt="Isekai">
+                        <img src="https://via.placeholder.com/300x200/27ae60/ffffff?text=Isekai" alt="مانجا Isekai">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">Isekai</h3>
@@ -669,7 +694,7 @@
                 <!-- الفئة 15 -->
                 <a href="manga-list.html?category=sports" class="category-card" id="sports">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/d35400/ffffff?text=رياضة" alt="رياضة">
+                        <img src="https://via.placeholder.com/300x200/d35400/ffffff?text=رياضة" alt="مانجا رياضة">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">رياضة</h3>
@@ -684,7 +709,7 @@
                 <!-- الفئة 16 -->
                 <a href="manga-list.html?category=slice-of-life" class="category-card" id="slice-of-life">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/16a085/ffffff?text=حياة يومية" alt="حياة يومية">
+                        <img src="https://via.placeholder.com/300x200/16a085/ffffff?text=حياة يومية" alt="مانجا حياة يومية">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">حياة يومية</h3>
@@ -699,7 +724,7 @@
                 <!-- الفئة 17 -->
                 <a href="manga-list.html?category=historical" class="category-card" id="historical">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/c0392b/ffffff?text=تاريخي" alt="تاريخي">
+                        <img src="https://via.placeholder.com/300x200/c0392b/ffffff?text=تاريخي" alt="مانجا تاريخي">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">تاريخي</h3>
@@ -724,7 +749,7 @@
                 <!-- الفئة 18 -->
                 <a href="manga-list.html?category=psychological" class="category-card" id="psychological">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=نفسي" alt="نفسي">
+                        <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=نفسي" alt="مانجا نفسي">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">نفسي</h3>
@@ -739,7 +764,7 @@
                 <!-- الفئة 19 -->
                 <a href="manga-list.html?category=supernatural" class="category-card" id="supernatural">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/2980b9/ffffff?text=خارق" alt="خارق">
+                        <img src="https://via.placeholder.com/300x200/2980b9/ffffff?text=خارق" alt="مانجا خارق">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">خارق</h3>
@@ -754,7 +779,7 @@
                 <!-- الفئة 20 -->
                 <a href="manga-list.html?category=mecha" class="category-card" id="mecha">
                     <div class="category-img">
-                        <img src="https://via.placeholder.com/300x200/7f8c8d/ffffff?text=ميكا" alt="ميكا">
+                        <img src="https://via.placeholder.com/300x200/7f8c8d/ffffff?text=ميكا" alt="مانجا ميكا">
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">ميكا</h3>
@@ -777,26 +802,26 @@
                 <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب.</p>
             </div>
             
-         <div class="footer-column">
-    <h3>روابط سريعة</h3>
-    <ul>
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="manga-list.html">قائمة المانجا</a></li>
-        <li><a href="categories.html">الاقسام</a></li>
-        <li><a href="updates.html">الشات</a></li>
-        <li><a href="society.html">المجتمع</a></li>
-        <li><a href="login.html">تسجيل الدخول</a></li>
-        <li><a href="register.html">إنشاء حساب</a></li>
-    </ul>
-</div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="manga-list.html">قائمة المانجا</a></li>
+                    <li><a href="categories.html">الاقسام</a></li>
+                    <li><a href="updates.html">الشات</a></li>
+                    <li><a href="society.html">المجتمع</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                    <li><a href="register.html">إنشاء حساب</a></li>
+                </ul>
+            </div>
             
             <div class="footer-column">
                 <h3>التواصل الاجتماعي</h3>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="ديسكورد"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
         </div>
@@ -807,7 +832,7 @@
     </footer>
 
     <!-- زر العودة لأعلى -->
-    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    <a href="#" class="back-to-top" id="backToTop" aria-label="العودة إلى الأعلى">↑</a>
 
     <!-- الجافاسكريبت -->
     <script>

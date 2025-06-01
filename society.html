@@ -15,6 +15,8 @@
             --dark-color: #2c2c2c;
             --light-color: #f5f5f5;
             --light-bg: #f9f9f9;
+            --card-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --card-shadow-hover: 0 10px 25px rgba(0,0,0,0.15);
         }
         
         * {
@@ -38,7 +40,12 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(58, 63, 88, 0.95);
+            padding: 0.5rem 0;
         }
         
         .navbar-container {
@@ -57,10 +64,19 @@
             text-decoration: none;
             display: flex;
             align-items: center;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
         
         .logo i {
             margin-left: 10px;
+        }
+        
+        .logo span.highlight {
+            color: var(--secondary-color);
         }
         
         .nav-links {
@@ -76,7 +92,7 @@
             color: white;
             text-decoration: none;
             font-size: 1.1rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
             padding: 0.5rem 0;
             position: relative;
         }
@@ -110,17 +126,27 @@
             text-decoration: none;
             margin-left: 1rem;
             font-size: 1rem;
+            transition: color 0.3s;
         }
         
-        .user-actions .btn {
+        .user-actions a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .btn {
             background: var(--secondary-color);
             padding: 0.5rem 1rem;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
         }
         
-        .user-actions .btn:hover {
+        .btn:hover {
             background: #e74c3c;
+            transform: translateY(-2px);
         }
         
         .user-profile {
@@ -137,6 +163,11 @@
             background-color: #fff;
             margin-left: 10px;
             overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .user-profile:hover .user-avatar {
+            transform: scale(1.1);
         }
         
         .user-avatar img {
@@ -151,11 +182,12 @@
             left: 0;
             background: white;
             min-width: 200px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
             border-radius: 5px;
             padding: 10px 0;
             z-index: 1000;
             display: none;
+            animation: fadeIn 0.3s ease-out;
         }
         
         .user-profile:hover .user-dropdown {
@@ -163,16 +195,25 @@
         }
         
         .user-dropdown a {
-            display: block;
+            display: flex;
+            align-items: center;
             padding: 8px 15px;
             color: var(--dark-color);
             text-decoration: none;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .user-dropdown a i {
+            margin-left: 8px;
+            width: 20px;
+            text-align: center;
         }
         
         .user-dropdown a:hover {
             background: #f0f0f0;
             color: var(--secondary-color);
+            padding-right: 20px;
         }
         
         /* محتوى صفحة المجتمع */
@@ -222,13 +263,15 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
         
         .community-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: var(--card-shadow-hover);
         }
         
         .community-header {
@@ -242,6 +285,11 @@
             font-size: 2rem;
             margin-bottom: 1rem;
             display: block;
+            transition: transform 0.3s;
+        }
+        
+        .community-card:hover .community-header i {
+            transform: scale(1.1);
         }
         
         .community-header h3 {
@@ -251,12 +299,16 @@
         
         .community-content {
             padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .community-content p {
             margin-bottom: 1.5rem;
             color: #555;
             line-height: 1.7;
+            flex-grow: 1;
         }
         
         .community-stats {
@@ -279,12 +331,16 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s;
             text-align: center;
+            border: none;
+            cursor: pointer;
         }
         
         .btn:hover {
             background: #e74c3c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .btn-block {
@@ -338,11 +394,14 @@
         .footer-column ul li a {
             color: #bbb;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: block;
+            padding: 0.3rem 0;
         }
         
         .footer-column ul li a:hover {
             color: white;
+            padding-right: 5px;
         }
         
         .social-links {
@@ -361,11 +420,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         
         .social-links a:hover {
             background-color: var(--secondary-color);
+            transform: translateY(-3px);
         }
         
         .copyright {
@@ -377,7 +437,33 @@
             text-align: center;
         }
         
+        /* تأثيرات الحركة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* تأثيرات التحميل */
+        .community-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .community-card:nth-child(1) { animation-delay: 0.1s; }
+        .community-card:nth-child(2) { animation-delay: 0.2s; }
+        .community-card:nth-child(3) { animation-delay: 0.3s; }
+        .community-card:nth-child(4) { animation-delay: 0.4s; }
+        .community-card:nth-child(5) { animation-delay: 0.5s; }
+        .community-card:nth-child(6) { animation-delay: 0.6s; }
+        
         /* تصميم متجاوب */
+        @media (max-width: 992px) {
+            .community-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
         @media (max-width: 768px) {
             .navbar-container {
                 flex-direction: column;
@@ -416,6 +502,24 @@
                 transform: translateX(50%);
             }
         }
+        
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .community-description {
+                font-size: 1rem;
+            }
+            
+            .community-header {
+                padding: 1rem;
+            }
+            
+            .community-content {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -424,17 +528,17 @@
         <div class="navbar-container">
             <a href="index.html" class="logo">
                 <i class="fas fa-book-open"></i>
-                <span>مانغا<span style="color: var(--secondary-color);">نا</span></span>
+                <span>مانغا<span class="highlight">نا</span></span>
             </a>
             
-       <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="manga-list.html">قائمة المانجا</a></li>
-    <li><a href="updates.html">الشات</a></li>
-    <li><a href="categories.html">الاقسام</a></li>
-    <li><a href="society.html">المجتمع</a></li>
-    <li><a href="profile.html">الملف الشخصي</a></li>
-</ul>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="updates.html">الشات</a></li>
+                <li><a href="categories.html">الاقسام</a></li>
+                <li><a href="society.html" class="active">المجتمع</a></li>
+                <li><a href="profile.html">الملف الشخصي</a></li>
+            </ul>
             
             <div class="user-actions">
                 <!-- حالة تسجيل الدخول - يمكن التبديل بين الحالتين -->
@@ -595,18 +699,18 @@
                 <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب.</p>
             </div>
             
-         <div class="footer-column">
-    <h3>روابط سريعة</h3>
-    <ul>
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="manga-list.html">قائمة المانجا</a></li>
-        <li><a href="categories.html">الاقسام</a></li>
-        <li><a href="updates.html">الشات</a></li>
-        <li><a href="society.html">المجتمع</a></li>
-        <li><a href="login.html">تسجيل الدخول</a></li>
-        <li><a href="register.html">إنشاء حساب</a></li>
-    </ul>
-</div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="manga-list.html">قائمة المانجا</a></li>
+                    <li><a href="categories.html">الاقسام</a></li>
+                    <li><a href="updates.html">الشات</a></li>
+                    <li><a href="society.html">المجتمع</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                    <li><a href="register.html">إنشاء حساب</a></li>
+                </ul>
+            </div>
             
             <div class="footer-column">
                 <h3>المساعدة</h3>
@@ -620,26 +724,51 @@
         </div>
         
         <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="ديسكورد"><i class="fab fa-discord"></i></a>
         </div>
         
         <div class="copyright">
-            &copy; 2023 موقع مانغا نا. جميع الحقوق محفوظة.
+            &copy; <span id="current-year">2023</span> موقع مانغا نا. جميع الحقوق محفوظة.
         </div>
     </footer>
 
     <!-- تأثير التمرير لشريط التنقل -->
     <script>
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.backgroundColor = 'rgba(58, 63, 88, 0.95)';
-            } else {
-                navbar.style.backgroundColor = 'var(--primary-color)';
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحديث سنة حقوق النشر تلقائياً
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // تأثير التمرير لشريط التنقل
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // تأثيرات ظهور العناصر عند التمرير
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // مراقبة بطاقات المجتمع
+            document.querySelectorAll('.community-card').forEach(card => {
+                observer.observe(card);
+            });
         });
     </script>
 </body>

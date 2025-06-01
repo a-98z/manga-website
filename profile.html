@@ -2,7 +2,14 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="widt<script>
+    function checkCookie() {
+        const cookies = document.cookie.split(';');
+        const isLoggedIn = cookies.some(cookie => cookie.includes("isLoggedIn=true"));
+        if (!isLoggedIn) window.location.href = "login.html";
+    }
+    window.onload = checkCookie; // تحقق عند فتح الصفحة
+</script>h=device-width, initial-scale=1.0">
     <title>الملف الشخصي - مانغا نا</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
@@ -850,12 +857,14 @@
 
     <!-- كود الجافاسكريبت -->
     <script>
-        function checkCookie() {
+       <script>
+    function checkCookie() {
         const cookies = document.cookie.split(';');
         const isLoggedIn = cookies.some(cookie => cookie.includes("isLoggedIn=true"));
         if (!isLoggedIn) window.location.href = "login.html";
     }
     window.onload = checkCookie; // تحقق عند فتح الصفحة
+</script>
         // بيانات التطبيق
         let users = JSON.parse(localStorage.getItem('users')) || [];
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));

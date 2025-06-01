@@ -6,7 +6,6 @@
     <title>الملف الشخصي - مانغا نا</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
     <style>
         :root {
             --primary-color: #3a3f58;
@@ -543,6 +542,80 @@
                 text-align: center;
             }
         }
+
+        /* نموذج التسجيل */
+        .register-form {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .register-form h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #e74c3c;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+        }
+
+        .login-link a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -554,26 +627,26 @@
                 <span>مانغا<span style="color: var(--secondary-color);">نا</span></span>
             </a>
             
-      <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="manga-list.html">قائمة المانجا</a></li>
-    <li><a href="updates.html">الشات</a></li>
-    <li><a href="categories.html">الاقسام</a></li>
-    <li><a href="society.html">المجتمع</a></li>
-    <li><a href="profile.html">الملف الشخصي</a></li>
-</ul>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="updates.html">الشات</a></li>
+                <li><a href="categories.html">الاقسام</a></li>
+                <li><a href="society.html">المجتمع</a></li>
+                <li><a href="profile.html" class="active">الملف الشخصي</a></li>
+            </ul>
             
             <div class="user-actions">
                 <div class="user-profile">
                     <div class="user-avatar">
-                        <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة المستخدم">
+                        <img id="nav-avatar" src="https://ui-avatars.com/api/?name=زائر&background=3a3f58&color=fff" alt="صورة المستخدم">
                     </div>
-                    <span>مرحباً، محمد</span>
+                    <span id="nav-username">مرحباً، زائر</span>
                     <div class="user-dropdown">
                         <a href="profile.html"><i class="fas fa-user"></i> الملف الشخصي</a>
                         <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
                         <a href="my-list.html"><i class="fas fa-bookmark"></i> قائمتي</a>
-                        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
                     </div>
                 </div>
             </div>
@@ -582,44 +655,73 @@
     
     <!-- محتوى الصفحة -->
     <main>
-        <div class="profile-container">
+        <!-- إذا كان المستخدم غير مسجل -->
+        <div id="register-section" class="register-form" style="display: none;">
+            <h2>إنشاء حساب جديد</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" required>
+                    <div class="error-message" id="username-error">اسم المستخدم هذا مستخدم بالفعل</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="submit-btn">تسجيل الحساب</button>
+            </form>
+            <div class="login-link">
+                لديك حساب بالفعل؟ <a href="#" id="show-login">تسجيل الدخول</a>
+            </div>
+        </div>
+
+        <!-- إذا كان المستخدم مسجلاً -->
+        <div id="profile-section" class="profile-container" style="display: none;">
             <!-- الشريط الجانبي -->
             <aside class="profile-sidebar">
                 <div class="profile-avatar">
-                    <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة الملف الشخصي">
+                    <img id="profile-avatar" src="https://ui-avatars.com/api/?name=زائر&background=3a3f58&color=fff" alt="صورة الملف الشخصي">
                     <div class="avatar-edit" title="تغيير الصورة">
                         <i class="fas fa-camera"></i>
                     </div>
                 </div>
                 
                 <div class="profile-info">
-                    <h2 class="profile-name">محمد أحمد</h2>
-                    <p class="profile-username">@mohammed_ahmed</p>
-                    <p class="profile-email">mohammed@example.com</p>
-                    <p class="profile-bio">عاشق للمانغا ومتابع لكل جديد في عالم الأنمي والمانغا اليابانية</p>
+                    <h2 class="profile-name" id="profile-name">زائر</h2>
+                    <p class="profile-username" id="profile-username">@زائر</p>
+                    <p class="profile-email" id="profile-email">زائر@example.com</p>
+                    <p class="profile-bio" id="profile-bio">لم يتم إضافة وصف شخصي بعد</p>
                 </div>
                 
                 <div class="profile-stats">
                     <div class="stat-item">
-                        <div class="stat-number">142</div>
+                        <div class="stat-number">0</div>
                         <div class="stat-label">متابَعون</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">87</div>
+                        <div class="stat-number">0</div>
                         <div class="stat-label">متابِعون</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">356</div>
+                        <div class="stat-number">0</div>
                         <div class="stat-label">نقاط</div>
                     </div>
                 </div>
                 
                 <nav class="profile-menu">
-                    <a href="profile.html" class="active"><i class="fas fa-user"></i> معلوماتي</a>
-                    <a href="profile-favorites.html"><i class="fas fa-heart"></i> المفضلة</a>
-                    <a href="profile-history.html"><i class="fas fa-history"></i> سجل القراءة</a>
-                    <a href="profile-comments.html"><i class="fas fa-comment"></i> تعليقاتي</a>
-                    <a href="profile-settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                    <a href="#" class="active" id="profile-info-link"><i class="fas fa-user"></i> معلوماتي</a>
+                    <a href="#" id="profile-favorites-link"><i class="fas fa-heart"></i> المفضلة</a>
+                    <a href="#" id="profile-history-link"><i class="fas fa-history"></i> سجل القراءة</a>
+                    <a href="#" id="profile-comments-link"><i class="fas fa-comment"></i> تعليقاتي</a>
+                    <a href="#" id="profile-settings-link"><i class="fas fa-cog"></i> الإعدادات</a>
                 </nav>
             </aside>
             
@@ -628,7 +730,7 @@
                 <div class="profile-header">
                     <h2 class="profile-title">معلوماتي الشخصية</h2>
                     <div class="profile-actions">
-                        <button class="btn btn-outline">تعديل الملف</button>
+                        <button class="btn btn-outline" id="edit-profile-btn">تعديل الملف</button>
                         <button class="btn">مشاركة الملف</button>
                     </div>
                 </div>
@@ -639,106 +741,88 @@
                     <div class="info-grid">
                         <div class="info-item">
                             <span class="info-label">الاسم الكامل</span>
-                            <div class="info-value">محمد أحمد عبدالله</div>
+                            <div class="info-value" id="full-name">لم يتم التحديد</div>
                         </div>
                         <div class="info-item">
                             <span class="info-label">تاريخ الميلاد</span>
-                            <div class="info-value">15 مارس 1995</div>
+                            <div class="info-value" id="birth-date">لم يتم التحديد</div>
                         </div>
                         <div class="info-item">
                             <span class="info-label">الجنس</span>
-                            <div class="info-value">ذكر</div>
+                            <div class="info-value" id="gender">لم يتم التحديد</div>
                         </div>
                         <div class="info-item">
                             <span class="info-label">البلد</span>
-                            <div class="info-value">المملكة العربية السعودية</div>
+                            <div class="info-value" id="country">لم يتم التحديد</div>
                         </div>
                         <div class="info-item">
                             <span class="info-label">تاريخ التسجيل</span>
-                            <div class="info-value">15 يناير 2022</div>
+                            <div class="info-value" id="join-date">لم يتم التحديد</div>
                         </div>
                         <div class="info-item">
                             <span class="info-label">آخر نشاط</span>
-                            <div class="info-value">منذ ساعتين</div>
+                            <div class="info-value" id="last-active">لم يتم التحديد</div>
                         </div>
                     </div>
                 </section>
                 
                 <!-- قسم المفضلة -->
-                <section id="favorites" style="margin-top: 2.5rem;">
+                <section id="favorites" style="margin-top: 2.5rem; display: none;">
                     <h3 style="margin-bottom: 1rem; color: var(--primary-color);">المانغا المفضلة</h3>
-                    <div class="manga-grid">
-                        <div class="manga-card">
-                            <div class="manga-cover">
-                                <img src="https://via.placeholder.com/150x200" alt="ون بيس">
-                            </div>
-                            <div class="manga-info">
-                                <h4 class="manga-title">ون بيس</h4>
-                                <p class="manga-chapter">الفصل 1054</p>
-                            </div>
-                        </div>
-                        <div class="manga-card">
-                            <div class="manga-cover">
-                                <img src="https://via.placeholder.com/150x200" alt="هجوم العمالقة">
-                            </div>
-                            <div class="manga-info">
-                                <h4 class="manga-title">هجوم العمالقة</h4>
-                                <p class="manga-chapter">الفصل 139</p>
-                            </div>
-                        </div>
-                        <div class="manga-card">
-                            <div class="manga-cover">
-                                <img src="https://via.placeholder.com/150x200" alt="ناروتو">
-                            </div>
-                            <div class="manga-info">
-                                <h4 class="manga-title">ناروتو</h4>
-                                <p class="manga-chapter">الفصل 700</p>
-                            </div>
-                        </div>
-                        <div class="manga-card">
-                            <div class="manga-cover">
-                                <img src="https://via.placeholder.com/150x200" alt="بليتش">
-                            </div>
-                            <div class="manga-info">
-                                <h4 class="manga-title">بليتش</h4>
-                                <p class="manga-chapter">الفصل 686</p>
-                            </div>
-                        </div>
+                    <div class="manga-grid" id="favorites-grid">
+                        <!-- سيتم تعبئتها بالجافاسكريبت -->
                     </div>
                 </section>
                 
                 <!-- قسم النشاطات الأخيرة -->
-                <section id="activity" style="margin-top: 2.5rem;">
+                <section id="activity" style="margin-top: 2.5rem; display: none;">
                     <h3 style="margin-bottom: 1rem; color: var(--primary-color);">النشاطات الأخيرة</h3>
-                    <div class="activity-list">
-                        <div class="activity-item">
-                            <div class="activity-avatar">
-                                <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة المستخدم">
-                            </div>
-                            <div class="activity-content">
-                                <p class="activity-text">أضفت <a href="#" style="color: var(--secondary-color);">ون بيس</a> إلى قائمة المفضلة</p>
-                                <p class="activity-time">منذ ساعتين</p>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-avatar">
-                                <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة المستخدم">
-                            </div>
-                            <div class="activity-content">
-                                <p class="activity-text">علقت على <a href="#" style="color: var(--secondary-color);">هجوم العمالقة الفصل 139</a></p>
-                                <p class="activity-time">منذ يوم</p>
-                            </div>
-                        </div>
-                        <div class="activity-item">
-                            <div class="activity-avatar">
-                                <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة المستخدم">
-                            </div>
-                            <div class="activity-content">
-                                <p class="activity-text">أكملت قراءة <a href="#" style="color: var(--secondary-color);">بليتش الفصل 686</a></p>
-                                <p class="activity-time">منذ 3 أيام</p>
-                            </div>
-                        </div>
+                    <div class="activity-list" id="activity-list">
+                        <!-- سيتم تعبئتها بالجافاسكريبت -->
                     </div>
+                </section>
+
+                <!-- قسم تعديل الملف -->
+                <section id="edit-profile" style="display: none;">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">تعديل الملف الشخصي</h3>
+                    <form class="edit-form" id="profile-form">
+                        <div class="form-group">
+                            <label for="edit-name">الاسم الكامل</label>
+                            <input type="text" id="edit-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-username">اسم المستخدم</label>
+                            <input type="text" id="edit-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-email">البريد الإلكتروني</label>
+                            <input type="email" id="edit-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-bio">السيرة الذاتية</label>
+                            <textarea id="edit-bio"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-birthdate">تاريخ الميلاد</label>
+                            <input type="date" id="edit-birthdate">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-gender">الجنس</label>
+                            <select id="edit-gender">
+                                <option value="">اختر...</option>
+                                <option value="ذكر">ذكر</option>
+                                <option value="أنثى">أنثى</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-country">البلد</label>
+                            <input type="text" id="edit-country">
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="cancel-edit">إلغاء</button>
+                            <button type="submit" class="btn">حفظ التغييرات</button>
+                        </div>
+                    </form>
                 </section>
             </div>
         </div>
@@ -746,19 +830,18 @@
     
     <!-- تذييل الصفحة -->
     <footer>
-
         <div class="footer-column">
-    <h3>روابط سريعة</h3>
-    <ul>
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="manga-list.html">قائمة المانجا</a></li>
-        <li><a href="categories.html">الاقسام</a></li>
-        <li><a href="updates.html">الشات</a></li>
-        <li><a href="society.html">المجتمع</a></li>
-        <li><a href="login.html">تسجيل الدخول</a></li>
-        <li><a href="register.html">إنشاء حساب</a></li>
-    </ul>
-</div>
+            <h3>روابط سريعة</h3>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="categories.html">الاقسام</a></li>
+                <li><a href="updates.html">الشات</a></li>
+                <li><a href="society.html">المجتمع</a></li>
+                <li><a href="#" id="footer-login-link">تسجيل الدخول</a></li>
+                <li><a href="#" id="footer-register-link">إنشاء حساب</a></li>
+            </ul>
+        </div>
         
         <div class="footer-container">
             <p class="copyright">&copy; 2023 مانغا نا. جميع الحقوق محفوظة.</p>
@@ -767,49 +850,261 @@
 
     <!-- كود الجافاسكريبت -->
     <script>
-        // تحميل بيانات المستخدم من localStorage
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {
-                name: 'محمد أحمد',
-                username: '@mohammed_ahmed',
-                email: 'mohammed@example.com',
-                avatar: 'https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff',
-                bio: 'عاشق للمانغا ومتابع لكل جديد في عالم الأنمي والمانغا اليابانية'
+        // بيانات التطبيق
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        // عناصر الصفحة
+        const registerSection = document.getElementById('register-section');
+        const profileSection = document.getElementById('profile-section');
+        const registerForm = document.getElementById('register-form');
+        const usernameError = document.getElementById('username-error');
+        const navAvatar = document.getElementById('nav-avatar');
+        const navUsername = document.getElementById('nav-username');
+        const profileAvatar = document.getElementById('profile-avatar');
+        const profileName = document.getElementById('profile-name');
+        const profileUsername = document.getElementById('profile-username');
+        const profileEmail = document.getElementById('profile-email');
+        const profileBio = document.getElementById('profile-bio');
+        const fullName = document.getElementById('full-name');
+        const birthDate = document.getElementById('birth-date');
+        const gender = document.getElementById('gender');
+        const country = document.getElementById('country');
+        const joinDate = document.getElementById('join-date');
+        const lastActive = document.getElementById('last-active');
+        const editProfileBtn = document.getElementById('edit-profile-btn');
+        const profileForm = document.getElementById('profile-form');
+        const editName = document.getElementById('edit-name');
+        const editUsername = document.getElementById('edit-username');
+        const editEmail = document.getElementById('edit-email');
+        const editBio = document.getElementById('edit-bio');
+        const editBirthdate = document.getElementById('edit-birthdate');
+        const editGender = document.getElementById('edit-gender');
+        const editCountry = document.getElementById('edit-country');
+        const cancelEdit = document.getElementById('cancel-edit');
+        const logoutBtn = document.getElementById('logout-btn');
+        const showLogin = document.getElementById('show-login');
+        const footerLoginLink = document.getElementById('footer-login-link');
+        const footerRegisterLink = document.getElementById('footer-register-link');
+        
+        // عرض الواجهة المناسبة حسب حالة المستخدم
+        function updateUI() {
+            if (currentUser) {
+                registerSection.style.display = 'none';
+                profileSection.style.display = 'grid';
+                
+                // تحديث بيانات المستخدم في الصفحة
+                updateProfileData();
+            } else {
+                registerSection.style.display = 'block';
+                profileSection.style.display = 'none';
+                navAvatar.src = 'https://ui-avatars.com/api/?name=زائر&background=3a3f58&color=fff';
+                navUsername.textContent = 'مرحباً، زائر';
+            }
+        }
+        
+        // تحديث بيانات الملف الشخصي
+        function updateProfileData() {
+            if (!currentUser) return;
+            
+            navAvatar.src = currentUser.avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(currentUser.name) + '&background=3a3f58&color=fff';
+            navUsername.textContent = 'مرحباً، ' + currentUser.name.split(' ')[0];
+            
+            profileAvatar.src = currentUser.avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(currentUser.name) + '&background=3a3f58&color=fff';
+            profileName.textContent = currentUser.name;
+            profileUsername.textContent = '@' + currentUser.username;
+            profileEmail.textContent = currentUser.email;
+            profileBio.textContent = currentUser.bio || 'لم يتم إضافة وصف شخصي بعد';
+            
+            fullName.textContent = currentUser.name || 'لم يتم التحديد';
+            birthDate.textContent = currentUser.birthdate || 'لم يتم التحديد';
+            gender.textContent = currentUser.gender || 'لم يتم التحديد';
+            country.textContent = currentUser.country || 'لم يتم التحديد';
+            joinDate.textContent = currentUser.joinDate || new Date().toLocaleDateString();
+            lastActive.textContent = 'منذ قليل';
+            
+            // تعبئة نموذج التعديل
+            if (editName) {
+                editName.value = currentUser.name;
+                editUsername.value = currentUser.username;
+                editEmail.value = currentUser.email;
+                editBio.value = currentUser.bio || '';
+                editBirthdate.value = currentUser.birthdate || '';
+                editGender.value = currentUser.gender || '';
+                editCountry.value = currentUser.country || '';
+            }
+        }
+        
+        // تسجيل مستخدم جديد
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // التحقق من عدم تكرار اسم المستخدم
+            const usernameExists = users.some(user => user.username === username);
+            if (usernameExists) {
+                usernameError.style.display = 'block';
+                return;
+            }
+            
+            usernameError.style.display = 'none';
+            
+            // إنشاء مستخدم جديد
+            const newUser = {
+                id: Date.now().toString(),
+                name,
+                username,
+                email,
+                password,
+                joinDate: new Date().toLocaleDateString(),
+                lastActive: new Date().toLocaleString(),
+                avatar: 'https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background=3a3f58&color=fff'
             };
             
-            // تعبئة بيانات المستخدم في الصفحة
-            document.querySelector('.profile-name').textContent = currentUser.name;
-            document.querySelector('.profile-username').textContent = currentUser.username;
-            document.querySelector('.profile-email').textContent = currentUser.email;
-            document.querySelector('.profile-bio').textContent = currentUser.bio;
-            document.querySelectorAll('.user-avatar img, .profile-avatar img, .activity-avatar img').forEach(img => {
-                img.src = currentUser.avatar;
-            });
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
             
-            // تغيير صورة الملف الشخصي
-            const avatarEdit = document.querySelector('.avatar-edit');
-            avatarEdit.addEventListener('click', function() {
-                const newAvatar = prompt('أدخل رابط الصورة الجديدة:');
-                if (newAvatar) {
-                    document.querySelectorAll('.user-avatar img, .profile-avatar img, .activity-avatar img').forEach(img => {
-                        img.src = newAvatar;
-                    });
-                    currentUser.avatar = newAvatar;
-                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                    alert('تم تحديث صورة الملف الشخصي بنجاح');
-                }
-            });
+            // تسجيل الدخول تلقائياً
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
             
-            // زر تعديل الملف
-            const editBtn = document.querySelector('.btn-outline');
-            editBtn.addEventListener('click', function() {
-                const newBio = prompt('أدخل السيرة الذاتية الجديدة:', currentUser.bio);
-                if (newBio !== null) {
-                    document.querySelector('.profile-bio').textContent = newBio;
-                    currentUser.bio = newBio;
-                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            updateUI();
+        });
+        
+        // عرض نموذج التعديل
+        editProfileBtn.addEventListener('click', function() {
+            document.getElementById('personal-info').style.display = 'none';
+            document.getElementById('favorites').style.display = 'none';
+            document.getElementById('activity').style.display = 'none';
+            document.getElementById('edit-profile').style.display = 'block';
+        });
+        
+        // إلغاء التعديل
+        cancelEdit.addEventListener('click', function() {
+            document.getElementById('personal-info').style.display = 'block';
+            document.getElementById('edit-profile').style.display = 'none';
+        });
+        
+        // حفظ التعديلات
+        profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // تحديث بيانات المستخدم
+            currentUser.name = editName.value;
+            currentUser.username = editUsername.value;
+            currentUser.email = editEmail.value;
+            currentUser.bio = editBio.value;
+            currentUser.birthdate = editBirthdate.value;
+            currentUser.gender = editGender.value;
+            currentUser.country = editCountry.value;
+            currentUser.lastActive = new Date().toLocaleString();
+            
+            // تحديث في localStorage
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // تحديث في مصفوفة المستخدمين
+            const userIndex = users.findIndex(user => user.id === currentUser.id);
+            if (userIndex !== -1) {
+                users[userIndex] = currentUser;
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+            
+            // تحديث الواجهة
+            updateProfileData();
+            document.getElementById('personal-info').style.display = 'block';
+            document.getElementById('edit-profile').style.display = 'none';
+        });
+        
+        // تسجيل الخروج
+        logoutBtn.addEventListener('click', function() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateUI();
+        });
+        
+        // الروابط في التذييل
+        footerLoginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('سيتم تنفيذ تسجيل الدخول في النسخة الكاملة');
+        });
+        
+        footerRegisterLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!currentUser) {
+                registerSection.style.display = 'block';
+                profileSection.style.display = 'none';
+            }
+        });
+        
+        // الروابط في القائمة الجانبية
+        document.getElementById('profile-info-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('personal-info').style.display = 'block';
+            document.getElementById('favorites').style.display = 'none';
+            document.getElementById('activity').style.display = 'none';
+            document.getElementById('edit-profile').style.display = 'none';
+        });
+        
+        document.getElementById('profile-favorites-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('personal-info').style.display = 'none';
+            document.getElementById('favorites').style.display = 'block';
+            document.getElementById('activity').style.display = 'none';
+            document.getElementById('edit-profile').style.display = 'none';
+        });
+        
+        document.getElementById('profile-history-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('سيتم تنفيذ سجل القراءة في النسخة الكاملة');
+        });
+        
+        document.getElementById('profile-comments-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('سيتم تنفيذ التعليقات في النسخة الكاملة');
+        });
+        
+        document.getElementById('profile-settings-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('سيتم تنفيذ الإعدادات في النسخة الكاملة');
+        });
+        
+        // تغيير صورة الملف الشخصي
+        document.querySelector('.avatar-edit').addEventListener('click', function() {
+            const newAvatar = prompt('أدخل رابط الصورة الجديدة:');
+            if (newAvatar) {
+                currentUser.avatar = newAvatar;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // تحديث في مصفوفة المستخدمين
+                const userIndex = users.findIndex(user => user.id === currentUser.id);
+                if (userIndex !== -1) {
+                    users[userIndex].avatar = newAvatar;
+                    localStorage.setItem('users', JSON.stringify(users));
                 }
-            });
+                
+                updateProfileData();
+            }
+        });
+        
+        // تهيئة الصفحة عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUI();
+            
+            // إذا كان هناك مستخدم مسجل، نعرض ملفه الشخصي
+            if (currentUser) {
+                // نتحقق مما إذا كان المستخدم لا يزال موجوداً في قاعدة البيانات
+                const userExists = users.some(user => user.id === currentUser.id);
+                if (!userExists) {
+                    // إذا لم يكن موجوداً، نسجل خروجه
+                    currentUser = null;
+                    localStorage.removeItem('currentUser');
+                    updateUI();
+                }
+            }
         });
     </script>
 </body>

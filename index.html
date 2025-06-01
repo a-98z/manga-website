@@ -347,7 +347,7 @@
                 <li><a href="manga-list.html">قائمة المانغا</a></li>
                 <li><a href="categories.html">الفئات</a></li>
                 <li><a href="updates.html">المحدثات</a></li>
-                <li><a href="community.html">المجتمع</a></li>
+                <li><a href="society.html">المجتمع</a></li>
                 <li><a href="about.html">عن الموقع</a></li>
             </ul>
             
@@ -401,7 +401,7 @@
                 </div>
                 <h3 class="feature-title">منتدى النقاش</h3>
                 <p class="feature-description">شارك في النقاشات مع عشاق المانغا حول مختلف المواضيع والسلاسل</p>
-                <a href="community.html#forum" class="btn" style="display: inline-block;">المشاركة الآن</a>
+                <a href="society.html#forum" class="btn" style="display: inline-block;">المشاركة الآن</a>
             </div>
             
             <div class="feature-card">
@@ -410,7 +410,7 @@
                 </div>
                 <h3 class="feature-title">نادي القراءة</h3>
                 <p class="feature-description">انضم إلى نادي القراءة الشهري حيث نختار معاً مانغا شهيرة لنقرأها معاً</p>
-                <a href="community.html#book-club" class="btn" style="display: inline-block;">تعرف أكثر</a>
+                <a href="society.html#book-club" class="btn" style="display: inline-block;">تعرف أكثر</a>
             </div>
             
             <div class="feature-card">
@@ -419,7 +419,7 @@
                 </div>
                 <h3 class="feature-title">المسابقات</h3>
                 <p class="feature-description">شارك في مسابقاتنا الشهرية واربح جوائز قيمة وهدايا حصرية</p>
-                <a href="community.html#contests" class="btn" style="display: inline-block;">شروط المشاركة</a>
+                <a href="society.html#contests" class="btn" style="display: inline-block;">شروط المشاركة</a>
             </div>
         </div>
     </section>
@@ -443,7 +443,7 @@
                 <ul>
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="manga-list.html">قائمة المانغا</a></li>
-                    <li><a href="community.html">المجتمع</a></li>
+                    <li><a href="society.html">المجتمع</a></li>
                     <li><a href="profile.html">الملف الشخصي</a></li>
                     <li><a href="about.html">عن الموقع</a></li>
                 </ul>
@@ -480,7 +480,7 @@
                 
                 // تعبئة بيانات المستخدم
                 document.getElementById('username').textContent = `مرحباً، ${currentUser.name.split(' ')[0]}`;
-                document.getElementById('user-avatar').src = currentUser.avatar;
+                document.getElementById('user-avatar').src = currentUser.avatar || 'https://ui-avatars.com/api/?name=مستخدم&background=3a3f58&color=fff';
             } else {
                 // عرض واجهة الزائر
                 guestView.style.display = 'flex';

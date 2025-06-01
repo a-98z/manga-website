@@ -452,25 +452,36 @@
     </style>
 </head>
 <body>
-    <!-- شريط التنقل العلوي -->
+    <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="logo">
-                <i class="fas fa-book-open"></i> مانغا<span style="color: var(--secondary-color);">نا</span>
+                <i class="fas fa-book-open"></i>
+                <span>مانغا<span style="color: var(--secondary-color);">نا</span></span>
             </a>
             
-      <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="manga-list.html">قائمة المانجا</a></li>
-    <li><a href="updates.html">الشات</a></li>
-    <li><a href="categories.html">الاقسام</a></li>
-    <li><a href="society.html">المجتمع</a></li>
-    <li><a href="profile.html">الملف الشخصي</a></li>
-</ul>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="updates.html">الشات</a></li>
+                <li><a href="categories.html">الاقسام</a></li>
+                <li><a href="society.html">المجتمع</a></li>
+                <li><a href="profile.html" class="active">الملف الشخصي</a></li>
+            </ul>
             
-            <div class="search-bar">
-                <input type="text" placeholder="ابحث عن مانجا...">
-                <button><i class="fas fa-search"></i></button>
+            <div class="user-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <img id="nav-avatar" src="https://ui-avatars.com/api/?name=زائر&background=3a3f58&color=fff" alt="صورة المستخدم">
+                    </div>
+                    <span id="nav-username">مرحباً، زائر</span>
+                    <div class="user-dropdown">
+                        <a href="profile.html"><i class="fas fa-user"></i> الملف الشخصي</a>
+                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="my-list.html"><i class="fas fa-bookmark"></i> قائمتي</a>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>

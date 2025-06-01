@@ -725,11 +725,14 @@
     
     <script>
        
+   <script>
     function checkCookie() {
         const cookies = document.cookie.split(';');
         const isLoggedIn = cookies.some(cookie => cookie.includes("isLoggedIn=true"));
         if (!isLoggedIn) window.location.href = "login.html";
     }
+    window.onload = checkCookie; // تحقق عند فتح الصفحة
+</script>
     window.onload = checkCookie; // تحقق عند فتح الصفحة
 
         // التحقق من حالة تسجيل الدخول عند تحميل الصفحة

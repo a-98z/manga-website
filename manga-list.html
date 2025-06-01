@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مانغا نا - قائمة المانجا الكاملة</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="موقع مانغا نا - أكبر مكتبة لقراءة المانجا والمانهوا العربية مجاناً">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --primary-color: #3a3f58;
@@ -25,7 +28,7 @@
         body {
             background-color: var(--light-color);
             color: var(--dark-color);
-            padding-top: 70px; /* لمنع المحتوى من الاختفاء تحت النافبار */
+            padding-top: 70px;
         }
         
         .navbar {
@@ -71,6 +74,7 @@
         .nav-links {
             display: flex;
             list-style: none;
+            direction: rtl;
         }
         
         .nav-links li {
@@ -116,6 +120,7 @@
             outline: none;
             width: 200px;
             transition: width 0.3s;
+            text-align: right;
         }
         
         .search-bar input:focus {
@@ -153,12 +158,11 @@
             margin: 15px auto;
         }
         
-        /* أنماط خاصة بصفحة القائمة */
         .manga-list-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            min-height: calc(100vh - 400px); /* لمنع التداخل مع الفوتر */
+            min-height: calc(100vh - 400px);
         }
         
         .filter-bar {
@@ -280,7 +284,6 @@
             background-color: #ddd;
         }
         
-        /* تذييل الصفحة */
         footer {
             background-color: var(--footer-color);
             color: white;
@@ -377,7 +380,6 @@
             font-size: 14px;
         }
         
-        /* قسم المانجا العشوائية في الفوتر */
         .random-manga {
             background-color: rgba(0,0,0,0.1);
             padding: 20px;
@@ -410,7 +412,6 @@
             cursor: pointer;
         }
         
-        /* التصميم المتجاوب */
         @media (max-width: 768px) {
             .navbar-container {
                 flex-direction: column;
@@ -423,7 +424,7 @@
             }
             
             .nav-links li {
-                margin: 5px 10px;
+                margin: 5px 8px;
             }
             
             .search-bar {
@@ -439,6 +440,11 @@
                 flex-direction: column;
             }
             
+            .filter-group {
+                margin: 8px 0;
+                width: 100%;
+            }
+            
             .manga-list-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 gap: 15px;
@@ -451,7 +457,6 @@
     </style>
 </head>
 <body>
-    <!-- شريط التنقل العلوي -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="logo">
@@ -469,19 +474,18 @@
             
             <div class="search-bar">
                 <input type="text" placeholder="ابحث عن مانجا...">
-                <button><i class="fas fa-search"></i></button>
+                <button aria-label="بحث"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </nav>
 
-    <!-- محتوى صفحة القائمة -->
     <div class="manga-list-container">
         <h1 class="section-title">قائمة المانجا الكاملة</h1>
         
-        <!-- شريط التصفية والبحث -->
         <div class="filter-bar">
             <div class="filter-group">
-                <select>
+                <label for="categoryFilter" style="display:none">تصفية حسب الفئة</label>
+                <select id="categoryFilter">
                     <option>جميع الفئات</option>
                     <option>أكشن</option>
                     <option>مغامرات</option>
@@ -492,7 +496,8 @@
             </div>
             
             <div class="filter-group">
-                <select>
+                <label for="sortFilter" style="display:none">ترتيب حسب</label>
+                <select id="sortFilter">
                     <option>الترتيب حسب</option>
                     <option>الأكثر مشاهدة</option>
                     <option>الأحدث</option>
@@ -506,12 +511,10 @@
             </div>
         </div>
         
-        <!-- قائمة المانجا -->
         <div class="manga-list-grid">
-            <!-- مانجا 1 -->
             <div class="manga-list-item">
                 <div class="manga-list-cover">
-                    <img src="https://via.placeholder.com/180x250" alt="ون بيس">
+                    <img src="https://via.placeholder.com/180x250" alt="غلاف مانجا ون بيس" loading="lazy">
                 </div>
                 <div class="manga-list-info">
                     <h3 class="manga-list-title">ون بيس</h3>
@@ -522,10 +525,9 @@
                 </div>
             </div>
             
-            <!-- مانجا 2 -->
             <div class="manga-list-item">
                 <div class="manga-list-cover">
-                    <img src="https://via.placeholder.com/180x250" alt="هجوم العمالقة">
+                    <img src="https://via.placeholder.com/180x250" alt="غلاف مانجا هجوم العمالقة" loading="lazy">
                 </div>
                 <div class="manga-list-info">
                     <h3 class="manga-list-title">هجوم العمالقة</h3>
@@ -536,10 +538,9 @@
                 </div>
             </div>
             
-            <!-- مانجا 3 -->
             <div class="manga-list-item">
                 <div class="manga-list-cover">
-                    <img src="https://via.placeholder.com/180x250" alt="ناروتو">
+                    <img src="https://via.placeholder.com/180x250" alt="غلاف مانجا ناروتو شيبودن" loading="lazy">
                 </div>
                 <div class="manga-list-info">
                     <h3 class="manga-list-title">ناروتو شيبودن</h3>
@@ -550,10 +551,9 @@
                 </div>
             </div>
             
-            <!-- مانجا 4 -->
             <div class="manga-list-item">
                 <div class="manga-list-cover">
-                    <img src="https://via.placeholder.com/180x250" alt="بليتش">
+                    <img src="https://via.placeholder.com/180x250" alt="غلاف مانجا بليتش" loading="lazy">
                 </div>
                 <div class="manga-list-info">
                     <h3 class="manga-list-title">بليتش</h3>
@@ -564,10 +564,9 @@
                 </div>
             </div>
             
-            <!-- مانجا 5 -->
             <div class="manga-list-item">
                 <div class="manga-list-cover">
-                    <img src="https://via.placeholder.com/180x250" alt="بلاك كلوفر">
+                    <img src="https://via.placeholder.com/180x250" alt="غلاف مانجا بلاك كلوفر" loading="lazy">
                 </div>
                 <div class="manga-list-info">
                     <h3 class="manga-list-title">بلاك كلوفر</h3>
@@ -578,10 +577,9 @@
                 </div>
             </div>
             
-            <!-- مانجا 6 -->
             <div class="manga-list-item">
                 <div class="manga-list-cover">
-                    <img src="https://via.placeholder.com/180x250" alt="سباي فاميلي">
+                    <img src="https://via.placeholder.com/180x250" alt="غلاف مانجا سباي فاميلي" loading="lazy">
                 </div>
                 <div class="manga-list-info">
                     <h3 class="manga-list-title">سباي x فاميلي</h3>
@@ -592,10 +590,9 @@
                 </div>
             </div>
             
-            <!-- مانجا 7 -->
             <div class="manga-list-item">
                 <div class="manga-list-cover">
-                    <img src="https://via.placeholder.com/180x250" alt="سولو ليفيلينج">
+                    <img src="https://via.placeholder.com/180x250" alt="غلاف مانجا سولو ليفيلينج" loading="lazy">
                 </div>
                 <div class="manga-list-info">
                     <h3 class="manga-list-title">سولو ليفيلينج</h3>
@@ -606,10 +603,9 @@
                 </div>
             </div>
             
-            <!-- مانجا 8 -->
             <div class="manga-list-item">
                 <div class="manga-list-cover">
-                    <img src="https://via.placeholder.com/180x250" alt="ذا برومكسد ون">
+                    <img src="https://via.placeholder.com/180x250" alt="غلاف مانجا ذا برومكسد ون" loading="lazy">
                 </div>
                 <div class="manga-list-info">
                     <h3 class="manga-list-title">ذا برومكسد ون</h3>
@@ -621,7 +617,6 @@
             </div>
         </div>
         
-        <!-- الترقيم الصفحي -->
         <div class="pagination">
             <a href="#">&laquo;</a>
             <a href="#" class="active">1</a>
@@ -633,7 +628,6 @@
         </div>
     </div>
 
-    <!-- تذييل الصفحة مع عرض عشوائي -->
     <footer>
         <div class="footer-container">
             <div class="footer-column">
@@ -641,9 +635,7 @@
                 <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب مع تحديث يومي لأحدث الإصدارات.</p>
                 <div class="random-manga">
                     <div class="random-manga-title">مانجا عشوائية</div>
-                    <div class="random-manga-list" id="randomMangaList">
-                        <!-- سيتم ملؤها بالجافاسكريبت -->
-                    </div>
+                    <div class="random-manga-list" id="randomMangaList"></div>
                 </div>
             </div>
             
@@ -692,7 +684,7 @@
     </footer>
 
     <script>
-        // إضافة تأثير التمرير لشريط التنقل
+        // تأثير التمرير لشريط التنقل
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -704,34 +696,37 @@
 
         // عرض مانجا عشوائية في الفوتر
         document.addEventListener('DOMContentLoaded', function() {
-            // قائمة المانجا
             const mangaList = [
-                "ون بيس", "هجوم العمالقة", "ناروتو شيبودن", "بليتش", 
-                "بلاك كلوفر", "سباي x فاميلي", "سولو ليفيلينج", "ذا برومكسد ون",
-                "جومونج كوكون", "ماشل: بلاي هارد", "تطوعي فقط!", "أبطال الكرة",
-                "كونان المحقق", "دراغون بول", "هانتر x هانتر", "مقهى السعادة",
-                "الطبيب المتهور", "المحقق المليونير", "أكاديمية الأبطال", "أرض العظماء"
+                {name: "ون بيس", views: "1.2M"},
+                {name: "هجوم العمالقة", views: "980K"},
+                {name: "ناروتو شيبودن", views: "2.5M"},
+                {name: "بليتش", views: "1.8M"},
+                {name: "بلاك كلوفر", views: "750K"},
+                {name: "سباي x فاميلي", views: "1.1M"},
+                {name: "سولو ليفيلينج", views: "890K"},
+                {name: "ذا برومكسد ون", views: "620K"},
+                {name: "جومونج كوكون", views: "540K"},
+                {name: "ماشل: بلاي هارد", views: "710K"},
+                {name: "تطوعي فقط!", views: "680K"},
+                {name: "أبطال الكرة", views: "920K"}
             ];
             
-            // عرض 8 عناصر عشوائية
             const randomMangaContainer = document.getElementById('randomMangaList');
-            const shuffled = mangaList.sort(() => 0.5 - Math.random());
-            let selected = shuffled.slice(0, 8);
+            randomMangaContainer.innerHTML = '';
+            
+            // اختيار عشوائي فريد
+            const shuffled = [...mangaList].sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, 8);
             
             selected.forEach(manga => {
                 const item = document.createElement('div');
                 item.className = 'random-manga-item';
-                item.textContent = manga;
+                item.innerHTML = `${manga.name} <span style="font-size:11px;color:#aaa">(${manga.views})</span>`;
                 randomMangaContainer.appendChild(item);
             });
             
             // تحديث سنة حقوق النشر
             document.getElementById('currentYear').textContent = new Date().getFullYear();
-            
-            // إحصائيات عشوائية (لأغراض العرض فقط)
-            document.getElementById('mangaCount').textContent = Math.floor(Math.random() * 5000) + 1000;
-            document.getElementById('chaptersCount').textContent = Math.floor(Math.random() * 50000) + 20000;
-            document.getElementById('usersCount').textContent = Math.floor(Math.random() * 100000) + 50000;
         });
     </script>
 </body>

@@ -6,7 +6,6 @@
     <title>مانغا نا - قائمة المانجا الكاملة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
     <style>
         :root {
             --primary-color: #3a3f58;
@@ -452,36 +451,25 @@
     </style>
 </head>
 <body>
-    <!-- شريط التنقل -->
+    <!-- شريط التنقل العلوي -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="logo">
-                <i class="fas fa-book-open"></i>
-                <span>مانغا<span style="color: var(--secondary-color);">نا</span></span>
+                <i class="fas fa-book-open"></i> مانغا<span style="color: var(--secondary-color);">نا</span>
             </a>
             
             <ul class="nav-links">
                 <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="manga-list.html">قائمة المانجا</a></li>
-                <li><a href="updates.html">الشات</a></li>
-                <li><a href="categories.html">الاقسام</a></li>
+                <li><a href="manga-list.html" class="active">قائمة المانجا</a></li>
+                <li><a href="updates.html">المحدثات</a></li>
+                <li><a href="categories.html">الفئات</a></li>
                 <li><a href="society.html">المجتمع</a></li>
-                <li><a href="profile.html" class="active">الملف الشخصي</a></li>
+                <li><a href="profile.html">الملف الشخصي</a></li>
             </ul>
             
-            <div class="user-actions">
-                <div class="user-profile">
-                    <div class="user-avatar">
-                        <img id="nav-avatar" src="https://ui-avatars.com/api/?name=زائر&background=3a3f58&color=fff" alt="صورة المستخدم">
-                    </div>
-                    <span id="nav-username">مرحباً، زائر</span>
-                    <div class="user-dropdown">
-                        <a href="profile.html"><i class="fas fa-user"></i> الملف الشخصي</a>
-                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
-                        <a href="my-list.html"><i class="fas fa-bookmark"></i> قائمتي</a>
-                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
-                    </div>
-                </div>
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث عن مانجا...">
+                <button><i class="fas fa-search"></i></button>
             </div>
         </div>
     </nav>
@@ -660,17 +648,17 @@
             </div>
             
             <div class="footer-column">
-    <h3>روابط سريعة</h3>
-    <ul>
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="manga-list.html">قائمة المانجا</a></li>
-        <li><a href="categories.html">الاقسام</a></li>
-        <li><a href="updates.html">الشات</a></li>
-        <li><a href="society.html">المجتمع</a></li>
-        <li><a href="login.html">تسجيل الدخول</a></li>
-        <li><a href="register.html">إنشاء حساب</a></li>
-    </ul>
-</div>
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="manga-list.html">قائمة المانجا</a></li>
+                    <li><a href="categories.html">الفئات</a></li>
+                    <li><a href="updates.html">المحدثات</a></li>
+                    <li><a href="society.html">المجتمع</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                    <li><a href="register.html">إنشاء حساب</a></li>
+                </ul>
+            </div>
             
             <div class="footer-column">
                 <h3>المساعدة</h3>

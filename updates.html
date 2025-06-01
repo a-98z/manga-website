@@ -139,6 +139,7 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: white;
         }
         .chat-header {
             background: var(--primary-color);
@@ -170,6 +171,7 @@
             max-width: 80%;
             word-wrap: break-word;
             position: relative;
+            animation: fadeIn 0.3s ease-out;
         }
         .message.user {
             background: #e3f2fd;
@@ -207,6 +209,7 @@
             padding: 15px;
             background: #eee;
             align-items: center;
+            border-top: 1px solid #ddd;
         }
         #message-input {
             flex: 1;
@@ -256,6 +259,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .admin-controls button {
             padding: 8px 15px;
@@ -282,9 +286,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        .message {
-            animation: fadeIn 0.3s ease-out;
         }
         
         /* تذييل الصفحة */
@@ -394,6 +395,23 @@
                 justify-content: center;
             }
         }
+
+        @media (max-width: 480px) {
+            .chat-input {
+                flex-direction: column;
+                gap: 10px;
+            }
+            #send-btn {
+                width: 100%;
+                margin-right: 0;
+            }
+            #message-input {
+                width: 100%;
+            }
+            .admin-controls button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -405,14 +423,14 @@
                 <span>مانجا العرب</span>
             </a>
             
-      <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="manga-list.html">قائمة المانجا</a></li>
-    <li><a href="updates.html">الشات</a></li>
-    <li><a href="categories.html">الاقسام</a></li>
-    <li><a href="society.html">المجتمع</a></li>
-    <li><a href="profile.html">الملف الشخصي</a></li>
-</ul>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="updates.html" class="active">الشات</a></li>
+                <li><a href="categories.html">الاقسام</a></li>
+                <li><a href="society.html">المجتمع</a></li>
+                <li><a href="profile.html">الملف الشخصي</a></li>
+            </ul>
             
             <div class="user-actions">
                 <a href="login.html">تسجيل الدخول</a>
@@ -443,7 +461,7 @@
             </div>
             
             <div class="chat-input">
-                <input type="text" id="message-input" placeholder="اكتب رسالتك هنا..." disabled>
+                <input type="text" id="message-input" placeholder="اكتب رسالتك هنا..." disabled aria-label="رسالة الشات">
                 <button id="send-btn" disabled>إرسال</button>
             </div>
         </div>
@@ -461,25 +479,25 @@
                 <h3>مانجا العرب</h3>
                 <p>الوجهة الأولى لعشاق المانجا العربية. نقدم أحدث الإصدارات والترجمات بجودة عالية.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="ديسكورد"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
             
-            <div class="footer-column">
-    <h3>روابط سريعة</h3>
-    <ul>
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="manga-list.html">قائمة المانجا</a></li>
-        <li><a href="categories.html">الاقسام</a></li>
-        <li><a href="updates.html">الشات</a></li>
-        <li><a href="society.html">المجتمع</a></li>
-        <li><a href="login.html">تسجيل الدخول</a></li>
-        <li><a href="register.html">إنشاء حساب</a></li>
-    </ul>
-</div>
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="manga-list.html">قائمة المانجا</a></li>
+                    <li><a href="categories.html">الاقسام</a></li>
+                    <li><a href="updates.html">الشات</a></li>
+                    <li><a href="society.html">المجتمع</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                    <li><a href="register.html">إنشاء حساب</a></li>
+                </ul>
+            </div>
             
             <div class="footer-section">
                 <h3>الدعم</h3>
@@ -493,7 +511,7 @@
         </div>
         
         <div class="copyright">
-            <p>جميع الحقوق محفوظة &copy; 2023 مانجا العرب. المحتوى يعود لأصحابه الأصليين.</p>
+            <p>جميع الحقوق محفوظة &copy; <span id="current-year">2023</span> مانجا العرب. المحتوى يعود لأصحابه الأصليين.</p>
         </div>
     </footer>
 
@@ -502,175 +520,183 @@
     
     <!-- كود الجافاسكريبت المحسن -->
     <script>
-        // عناصر واجهة المستخدم
-        const chatMessages = document.getElementById('chat-messages');
-        const messageInput = document.getElementById('message-input');
-        const sendBtn = document.getElementById('send-btn');
-        const loginNotice = document.getElementById('login-notice');
-        const adminControls = document.getElementById('admin-controls');
-        const chatStatus = document.getElementById('chat-status');
-
-        // حالة المستخدم (سيتم جلبها من نظام التسجيل)
-        let isLoggedIn = false; // سيتم تغييرها بعد التحقق من تسجيل الدخول
-        let isAdmin = false;    // سيتم تغييرها بعد التحقق من الصلاحيات
-        let currentUser = null; // سيحتوي على بيانات المستخدم عند تسجيل الدخول
-
-        // أوقات عمل الشات (4 مساءً - 8 مساءً)
-        const chatOpenHours = { start: 16, end: 20 }; // 16 = 4PM, 20 = 8PM
-
-        // حالة الشات
-        let chatIsOpen = false;
-        let socket = null;
-
-        // تحقق إذا كان الشات مفتوحًا الآن
-        function checkChatHours() {
-            const now = new Date();
-            const currentHour = now.getHours();
-            return currentHour >= chatOpenHours.start && currentHour < chatOpenHours.end;
-        }
-
-        // تحديث واجهة الشات حسب الحالة
-        function updateChatUI() {
-            chatIsOpen = checkChatHours();
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحديث سنة حقوق النشر تلقائياً
+            document.getElementById('current-year').textContent = new Date().getFullYear();
             
-            if (chatIsOpen) {
-                chatStatus.textContent = 'الشات مفتوح الآن';
-                chatStatus.style.backgroundColor = '#4CAF50';
+            // عناصر واجهة المستخدم
+            const chatMessages = document.getElementById('chat-messages');
+            const messageInput = document.getElementById('message-input');
+            const sendBtn = document.getElementById('send-btn');
+            const loginNotice = document.getElementById('login-notice');
+            const adminControls = document.getElementById('admin-controls');
+            const chatStatus = document.getElementById('chat-status');
+            const chatBox = document.getElementById('chat-box');
+
+            // حالة المستخدم (سيتم جلبها من نظام التسجيل)
+            let isLoggedIn = false; // سيتم تغييرها بعد التحقق من تسجيل الدخول
+            let isAdmin = false;    // سيتم تغييرها بعد التحقق من الصلاحيات
+            let currentUser = null; // سيحتوي على بيانات المستخدم عند تسجيل الدخول
+
+            // أوقات عمل الشات (4 مساءً - 8 مساءً)
+            const chatOpenHours = { start: 16, end: 20 }; // 16 = 4PM, 20 = 8PM
+
+            // حالة الشات
+            let chatIsOpen = false;
+            let socket = null;
+
+            // تحقق إذا كان الشات مفتوحًا الآن
+            function checkChatHours() {
+                const now = new Date();
+                const currentHour = now.getHours();
+                return currentHour >= chatOpenHours.start && currentHour < chatOpenHours.end;
+            }
+
+            // تحديث واجهة الشات حسب الحالة
+            function updateChatUI() {
+                chatIsOpen = checkChatHours();
                 
-                if (isLoggedIn) {
-                    messageInput.disabled = false;
-                    sendBtn.disabled = false;
-                    loginNotice.style.display = 'none';
+                if (chatIsOpen) {
+                    chatStatus.textContent = 'الشات مفتوح الآن';
+                    chatStatus.style.backgroundColor = '#4CAF50';
+                    
+                    if (isLoggedIn) {
+                        messageInput.disabled = false;
+                        sendBtn.disabled = false;
+                        loginNotice.style.display = 'none';
+                        messageInput.focus();
+                    } else {
+                        loginNotice.style.display = 'block';
+                    }
                 } else {
-                    loginNotice.style.display = 'block';
+                    chatStatus.textContent = 'الشات مغلق (يفتح من 4 مساءً إلى 8 مساءً)';
+                    chatStatus.style.backgroundColor = '#F44336';
+                    messageInput.disabled = true;
+                    sendBtn.disabled = true;
                 }
-            } else {
-                chatStatus.textContent = 'الشات مغلق (يفتح من 4 مساءً إلى 8 مساءً)';
-                chatStatus.style.backgroundColor = '#F44336';
-                messageInput.disabled = true;
-                sendBtn.disabled = true;
+
+                if (isAdmin) adminControls.style.display = 'flex';
             }
 
-            if (isAdmin) adminControls.style.display = 'flex';
-        }
+            // الاتصال بخادم الشات
+            function connectToChat() {
+                // محاكاة الاتصال بالسيرفر (ستستبدل باتصال Socket.io الحقيقي)
+                socket = {
+                    emit: (event, data) => {
+                        console.log(`إرسال: ${event}`, data);
+                        // محاكاة استجابة السيرفر
+                        setTimeout(() => {
+                            if (event === 'send_message') {
+                                addMessage(data.sender || currentUser?.username || 'أنت', data.text, 'user');
+                            }
+                        }, 300);
+                    },
+                    on: (event, callback) => {
+                        console.log(`الاستماع إلى: ${event}`);
+                    }
+                };
 
-        // الاتصال بخادم الشات
-        function connectToChat() {
-            // محاكاة الاتصال بالسيرفر (ستستبدل باتصال Socket.io الحقيقي)
-            socket = {
-                emit: (event, data) => {
-                    console.log(`إرسال: ${event}`, data);
-                    // محاكاة استجابة السيرفر
-                    setTimeout(() => {
-                        if (event === 'send_message') {
-                            addMessage(data.sender || currentUser?.username || 'أنت', data.text, 'user');
-                        }
-                    }, 300);
-                },
-                on: (event, callback) => {
-                    console.log(`الاستماع إلى: ${event}`);
-                }
-            };
-
-            // إضافة بعض الرسائل الوهمية للتوضيح
-            setTimeout(() => {
-                addMessage('النظام', 'تم الاتصال بخادم الشات بنجاح', 'system');
-                addMessage('مدير_المنتدى', 'مرحباً بكم في شات مجتمع المانجا! اليوم سنناقش أحدث إصدارات المانجا.', 'admin');
-                
-                if (isLoggedIn) {
-                    addMessage('النظام', `مرحباً ${currentUser?.username || 'عزيزي'}! يمكنك البدء بالدردشة الآن.`, 'system');
-                }
-            }, 1000);
-        }
-
-        // إضافة رسالة للواجهة
-        function addMessage(sender, text, type = 'user') {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message', type);
-            
-            let messageContent = `<span class="sender">${sender}:</span> ${text}`;
-            
-            if (type === 'system') {
-                messageContent = text;
+                // إضافة بعض الرسائل الوهمية للتوضيح
+                setTimeout(() => {
+                    addMessage('النظام', 'تم الاتصال بخادم الشات بنجاح', 'system');
+                    addMessage('مدير_المنتدى', 'مرحباً بكم في شات مجتمع المانجا! اليوم سنناقش أحدث إصدارات المانجا.', 'admin');
+                    
+                    if (isLoggedIn) {
+                        addMessage('النظام', `مرحباً ${currentUser?.username || 'عزيزي'}! يمكنك البدء بالدردشة الآن.`, 'system');
+                    }
+                }, 1000);
             }
-            
-            messageDiv.innerHTML = `
-                ${messageContent}
-                <span class="time">${new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})}</span>
-            `;
-            
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
 
-        // إرسال رسالة
-        function sendMessage() {
-            const message = messageInput.value.trim();
-            if (!message || !chatIsOpen || !isLoggedIn) return;
-            
-            // إرسال الرسالة عبر السوكيت
-            socket.emit('send_message', {
-                sender: currentUser?.username,
-                text: message,
-                timestamp: new Date().toISOString()
-            });
-            
-            // مسح حقل الإدخال
-            messageInput.value = '';
-        }
-
-        // تهيئة الشات عند تحميل الصفحة
-        function initChat() {
-            // هنا سيتم التحقق من حالة تسجيل الدخول (محاكاة)
-            setTimeout(() => {
-                // يمكنك تغيير هذه القيم للاختبار
-                isLoggedIn = true; // جرب false لرؤية رسالة تسجيل الدخول
-                isAdmin = false;    // جرب true لرؤية عناصر التحكم الإدارية
+            // إضافة رسالة للواجهة
+            function addMessage(sender, text, type = 'user') {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', type);
                 
-                if (isLoggedIn) {
-                    currentUser = {
-                        username: 'محب_المانجا',
-                        role: isAdmin ? 'admin' : 'user'
-                    };
+                let messageContent = `<span class="sender">${sender}:</span> ${text}`;
+                
+                if (type === 'system') {
+                    messageContent = text;
                 }
                 
+                messageDiv.innerHTML = `
+                    ${messageContent}
+                    <span class="time">${new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})}</span>
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // إرسال رسالة
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                if (!message || !chatIsOpen || !isLoggedIn) return;
+                
+                // إرسال الرسالة عبر السوكيت
+                socket.emit('send_message', {
+                    sender: currentUser?.username,
+                    text: message,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // مسح حقل الإدخال
+                messageInput.value = '';
+                messageInput.focus();
+            }
+
+            // تهيئة الشات عند تحميل الصفحة
+            function initChat() {
+                // هنا سيتم التحقق من حالة تسجيل الدخول (محاكاة)
+                setTimeout(() => {
+                    // يمكنك تغيير هذه القيم للاختبار
+                    isLoggedIn = true; // جرب false لرؤية رسالة تسجيل الدخول
+                    isAdmin = false;    // جرب true لرؤية عناصر التحكم الإدارية
+                    
+                    if (isLoggedIn) {
+                        currentUser = {
+                            username: 'محب_المانجا',
+                            role: isAdmin ? 'admin' : 'user'
+                        };
+                    }
+                    
+                    updateChatUI();
+                    connectToChat();
+                }, 500);
+            }
+
+            // الأزرار الإدارية (للمشرفين فقط)
+            document.getElementById('close-chat')?.addEventListener('click', () => {
+                chatIsOpen = false;
                 updateChatUI();
-                connectToChat();
-            }, 500);
-        }
+                addMessage('النظام', 'تم إغلاق الشات مؤقتاً بواسطة المشرف.', 'system');
+            });
 
-        // الأزرار الإدارية (للمشرفين فقط)
-        document.getElementById('close-chat')?.addEventListener('click', () => {
-            chatIsOpen = false;
-            updateChatUI();
-            addMessage('النظام', 'تم إغلاق الشات مؤقتاً بواسطة المشرف.', 'system');
+            document.getElementById('clear-chat')?.addEventListener('click', () => {
+                if (confirm('هل أنت متأكد من رغبتك في مسح كل الرسائل؟')) {
+                    chatMessages.innerHTML = '';
+                    addMessage('النظام', 'تم مسح محادثة الشات.', 'system');
+                }
+            });
+
+            document.getElementById('ban-user')?.addEventListener('click', () => {
+                const username = prompt('أدخل اسم المستخدم الذي تريد حظره:');
+                if (username) {
+                    addMessage('النظام', `تم حظر المستخدم ${username} من الشات.`, 'system');
+                }
+            });
+
+            // أحداث لوحة المفاتيح
+            messageInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            sendBtn.addEventListener('click', sendMessage);
+
+            // بدء الشات
+            initChat();
         });
-
-        document.getElementById('clear-chat')?.addEventListener('click', () => {
-            if (confirm('هل أنت متأكد من رغبتك في مسح كل الرسائل؟')) {
-                chatMessages.innerHTML = '';
-                addMessage('النظام', 'تم مسح محادثة الشات.', 'system');
-            }
-        });
-
-        document.getElementById('ban-user')?.addEventListener('click', () => {
-            const username = prompt('أدخل اسم المستخدم الذي تريد حظره:');
-            if (username) {
-                addMessage('النظام', `تم حظر المستخدم ${username} من الشات.`, 'system');
-            }
-        });
-
-        // أحداث لوحة المفاتيح
-        messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        sendBtn.addEventListener('click', sendMessage);
-
-        // بدء الشات
-        initChat();
     </script>
 </body>
 </html>

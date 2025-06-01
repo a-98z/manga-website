@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجتمع - موقع مانغا</title>
+    <meta name="description" content="مجتمع محبي المانغا العربية - مناقشات، نوادي قراءة، مسابقات وأكثر">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a3f58;
+            --secondary-color: #fc5c65;
+            --dark-color: #2c2c2c;
+            --light-color: #f5f5f5;
+            --light-bg: #f9f9f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* شريط التنقل */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links a.active {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-actions a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1rem;
+            font-size: 1rem;
+        }
+        
+        .user-actions .btn {
+            background: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .user-actions .btn:hover {
+            background: #e74c3c;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            padding: 10px 0;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .user-profile:hover .user-dropdown {
+            display: block;
+        }
+        
+        .user-dropdown a {
+            display: block;
+            padding: 8px 15px;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .user-dropdown a:hover {
+            background: #f0f0f0;
+            color: var(--secondary-color);
+        }
+        
+        /* محتوى صفحة المجتمع */
+        .community-page {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        
+        .community-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .community-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .community-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .community-header {
+            padding: 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        
+        .community-header i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .community-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .community-content {
+            padding: 1.5rem;
+        }
+        
+        .community-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .community-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .community-stats i {
+            margin-left: 5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #e74c3c;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.25rem;
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            .nav-links {
+                margin-bottom: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0 0.5rem 0.5rem;
+            }
+            
+            .user-actions {
+                margin-top: 1rem;
+            }
+            
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>مانغا<span style="color: var(--secondary-color);">نا</span></span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانغا</a></li>
+                <li><a href="categories.html">الفئات</a></li>
+                <li><a href="updates.html">المحدثات</a></li>
+                <li><a href="community.html" class="active">المجتمع</a></li>
+                <li><a href="about.html">عن الموقع</a></li>
+            </ul>
+            
+            <div class="user-actions">
+                <!-- حالة تسجيل الدخول - يمكن التبديل بين الحالتين -->
+                <!-- الحالة 1: غير مسجل الدخول -->
+                <!--
+                <a href="login.html">تسجيل الدخول</a>
+                <a href="register.html" class="btn">إنشاء حساب</a>
+                -->
+                
+                <!-- الحالة 2: مسجل الدخول -->
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <img src="https://via.placeholder.com/150" alt="صورة المستخدم">
+                    </div>
+                    <span>مرحباً، محمد</span>
+                    <div class="user-dropdown">
+                        <a href="profile.html"><i class="fas fa-user"></i> الملف الشخصي</a>
+                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="my-list.html"><i class="fas fa-bookmark"></i> قائمتي</a>
+                        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- محتوى صفحة المجتمع -->
+    <main class="community-page">
+        <h1 class="section-title">مجتمع محبي المانغا</h1>
+        
+        <p class="community-description">
+            انضم إلى مجتمعنا النشط من عشاق المانغا! شارك في النقاشات، انضم إلى نوادي القراءة، 
+            استفد من توصيات الأعضاء، وكن جزءاً من فعالياتنا ومسابقاتنا الحصرية.
+        </p>
+        
+        <div class="community-grid">
+            <!-- منتدى النقاش -->
+            <div class="community-card">
+                <div class="community-header">
+                    <i class="fas fa-comments"></i>
+                    <h3>منتدى النقاش</h3>
+                </div>
+                <div class="community-content">
+                    <p>
+                        شارك في النقاشات مع عشاق المانغا حول مختلف المواضيع والسلاسل. 
+                        ناقش أحدث الفصول، توقع الأحداث القادمة، وشارك آراءك مع المجتمع.
+                    </p>
+                    <div class="community-stats">
+                        <span><i class="fas fa-comment"></i> 1,245 منشور</span>
+                        <span><i class="fas fa-users"></i> 342 مشارك</span>
+                    </div>
+                    <a href="forum.html" class="btn btn-block">زيارة المنتدى</a>
+                </div>
+            </div>
+            
+            <!-- نادي الكتاب -->
+            <div class="community-card">
+                <div class="community-header">
+                    <i class="fas fa-book-reader"></i>
+                    <h3>نادي الكتاب</h3>
+                </div>
+                <div class="community-content">
+                    <p>
+                        انضم إلى نادي القراءة الشهري حيث نختار معاً مانغا شهيرة لنقرأها 
+                        ونناقشها معاً. فرصة رائعة لاكتشاف أعمال جديدة والتعرف على أصدقاء جدد.
+                    </p>
+                    <div class="community-stats">
+                        <span><i class="fas fa-book"></i> مانغا الشهر: ون بيس</span>
+                        <span><i class="fas fa-user-friends"></i> 156 عضو</span>
+                    </div>
+                    <a href="book-club.html" class="btn btn-block">الانضمام للنادي</a>
+                </div>
+            </div>
+            
+            <!-- مسابقات المجتمع -->
+            <div class="community-card">
+                <div class="community-header">
+                    <i class="fas fa-trophy"></i>
+                    <h3>مسابقات المجتمع</h3>
+                </div>
+                <div class="community-content">
+                    <p>
+                        شارك في مسابقاتنا الشهرية واربح جوائز قيمة وهدايا حصرية. 
+                        من رسم الشخصيات إلى كتابة القصص القصيرة، لدينا مسابقات تناسب جميع المواهب.
+                    </p>
+                    <div class="community-stats">
+                        <span><i class="fas fa-gift"></i> 5 جوائز هذا الشهر</span>
+                        <span><i class="fas fa-calendar-alt"></i> تنتهي بعد 7 أيام</span>
+                    </div>
+                    <a href="contests.html" class="btn btn-block">المشاركة الآن</a>
+                </div>
+            </div>
+            
+            <!-- توصيات الأعضاء -->
+            <div class="community-card">
+                <div class="community-header">
+                    <i class="fas fa-star"></i>
+                    <h3>توصيات الأعضاء</h3>
+                </div>
+                <div class="community-content">
+                    <p>
+                        اكتشف كنوز المانغا المخفية من خلال توصيات أعضاء مجتمعنا. 
+                        تصفح قوائم القراءة المميزة وأضف تقييماتك للمساعدة الآخرين في اكتشاف أعمال رائعة.
+                    </p>
+                    <div class="community-stats">
+                        <span><i class="fas fa-thumbs-up"></i> 892 توصية</span>
+                        <span><i class="fas fa-list"></i> 245 قائمة</span>
+                    </div>
+                    <a href="recommendations.html" class="btn btn-block">استكشاف التوصيات</a>
+                </div>
+            </div>
+            
+            <!-- فعاليات المجتمع -->
+            <div class="community-card">
+                <div class="community-header">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>فعاليات المجتمع</h3>
+                </div>
+                <div class="community-content">
+                    <p>
+                        شارك في فعالياتنا الحصرية التي تنظمها إدارة الموقع. 
+                        من جلسات الأسئلة مع المترجمين إلى لقاءات مع فنانين مانغا، لدينا دائمًا شيء مميز.
+                    </p>
+                    <div class="community-stats">
+                        <span><i class="fas fa-microphone"></i> ضيف الشهر: أحمد المترجم</span>
+                        <span><i class="fas fa-clock"></i> بعد 3 أيام</span>
+                    </div>
+                    <a href="events.html" class="btn btn-block">عرض الفعاليات</a>
+                </div>
+            </div>
+            
+            <!-- معرض الأعمال الفنية -->
+            <div class="community-card">
+                <div class="community-header">
+                    <i class="fas fa-palette"></i>
+                    <h3>معرض الأعمال الفنية</h3>
+                </div>
+                <div class="community-content">
+                    <p>
+                        استمتع بمشاهدة أعمال فنية مذهلة من إبداع أعضاء مجتمعنا. 
+                        شارك رسوماتك، احصل على تعليقات بناءة، وكن مصدر إلهام للآخرين.
+                    </p>
+                    <div class="community-stats">
+                        <span><i class="fas fa-image"></i> 1,245 عمل فني</span>
+                        <span><i class="fas fa-paint-brush"></i> 87 فنان</span>
+                    </div>
+                    <a href="art-gallery.html" class="btn btn-block">زيارة المعرض</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>عن الموقع</h3>
+                <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="manga-list.html">قائمة المانغا</a></li>
+                    <li><a href="categories.html">الفئات</a></li>
+                    <li><a href="updates.html">المحدثات</a></li>
+                    <li><a href="community.html">المجتمع</a></li>
+                    <li><a href="about.html">اتصل بنا</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>المساعدة</h3>
+                <ul>
+                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                    <li><a href="terms.html">شروط الاستخدام</a></li>
+                    <li><a href="policy.html">سياسة الخصوصية</a></li>
+                    <li><a href="report.html">الإبلاغ عن مشكلة</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 موقع مانغا نا. جميع الحقوق محفوظة.
+        </div>
+    </footer>
+
+    <!-- تأثير التمرير لشريط التنقل -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(58, 63, 88, 0.95)';
+            } else {
+                navbar.style.backgroundColor = 'var(--primary-color)';
+            }
+        });
+    </script>
+</body>
+</html>

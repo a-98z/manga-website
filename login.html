@@ -359,8 +359,6 @@
     
     <!-- نظام التوثيق باستخدام localStorage -->
     <script>
-        firebase.auth().signInWithEmailAndPassword(email, password)
-  .then(() => window.location.href = "index.html");
         // بيانات المستخدمين (بديل مؤقت لقاعدة البيانات)
         const users = JSON.parse(localStorage.getItem('manga_users')) || [
             {

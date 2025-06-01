@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - مانغا نا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a3f58;
+            --secondary-color: #fc5c65;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --border-color: #e1e1e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* شريط التنقل */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links a.active {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            padding: 10px 0;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .user-profile:hover .user-dropdown {
+            display: block;
+        }
+        
+        .user-dropdown a {
+            display: block;
+            padding: 8px 15px;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .user-dropdown a:hover {
+            background: #f0f0f0;
+            color: var(--secondary-color);
+        }
+        
+        /* محتوى الصفحة */
+        .profile-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+        
+        .profile-sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 5px solid var(--light-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .avatar-edit {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: var(--secondary-color);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .profile-avatar:hover .avatar-edit {
+            opacity: 1;
+        }
+        
+        .profile-info {
+            text-align: center;
+        }
+        
+        .profile-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .profile-username {
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-email {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-bio {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1.5rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .profile-menu {
+            margin-top: 2rem;
+        }
+        
+        .profile-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--dark-color);
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+        }
+        
+        .profile-menu a:hover, .profile-menu a.active {
+            background: #f0f0f0;
+            color: var(--secondary-color);
+        }
+        
+        .profile-menu a i {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .profile-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .profile-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .profile-actions .btn {
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .profile-actions .btn-outline {
+            background: white;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            margin-right: 10px;
+        }
+        
+        .profile-actions .btn:hover {
+            background: #e74c3c;
+        }
+        
+        .profile-actions .btn-outline:hover {
+            background: #f8f8f8;
+        }
+        
+        /* قسم المعلومات الشخصية */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .info-item {
+            margin-bottom: 1rem;
+        }
+        
+        .info-label {
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .info-value {
+            padding: 10px 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+        }
+        
+        /* قسم المانغا المفضلة */
+        .manga-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .manga-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .manga-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .manga-cover {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .manga-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .manga-info {
+            padding: 10px;
+        }
+        
+        .manga-title {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .manga-chapter {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* قسم النشاطات */
+        .activity-list {
+            margin-top: 1.5rem;
+        }
+        
+        .activity-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .activity-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        
+        .activity-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .activity-content {
+            flex-grow: 1;
+        }
+        
+        .activity-text {
+            margin-bottom: 5px;
+        }
+        
+        .activity-time {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* نموذج التعديل */
+        .edit-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .edit-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .edit-form input, 
+        .edit-form textarea, 
+        .edit-form select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .edit-form input:focus, 
+        .edit-form textarea:focus, 
+        .edit-form select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .edit-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 992px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-sidebar {
+                order: 2;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-container {
+                padding: 0 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .profile-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .profile-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>مانغا<span style="color: var(--secondary-color);">نا</span></span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانغا</a></li>
+                <li><a href="categories.html">الفئات</a></li>
+                <li><a href="updates.html">المحدثات</a></li>
+                <li><a href="community.html">المجتمع</a></li>
+                <li><a href="about.html">عن الموقع</a></li>
+            </ul>
+            
+            <div class="user-actions">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة المستخدم">
+                    </div>
+                    <span>مرحباً، محمد</span>
+                    <div class="user-dropdown">
+                        <a href="profile.html"><i class="fas fa-user"></i> الملف الشخصي</a>
+                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                        <a href="my-list.html"><i class="fas fa-bookmark"></i> قائمتي</a>
+                        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- محتوى الصفحة -->
+    <main>
+        <div class="profile-container">
+            <!-- الشريط الجانبي -->
+            <aside class="profile-sidebar">
+                <div class="profile-avatar">
+                    <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة الملف الشخصي">
+                    <div class="avatar-edit" title="تغيير الصورة">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                
+                <div class="profile-info">
+                    <h2 class="profile-name">محمد أحمد</h2>
+                    <p class="profile-username">@mohammed_ahmed</p>
+                    <p class="profile-email">mohammed@example.com</p>
+                    <p class="profile-bio">عاشق للمانغا ومتابع لكل جديد في عالم الأنمي والمانغا اليابانية</p>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">142</div>
+                        <div class="stat-label">متابَعون</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">87</div>
+                        <div class="stat-label">متابِعون</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">356</div>
+                        <div class="stat-label">نقاط</div>
+                    </div>
+                </div>
+                
+                <nav class="profile-menu">
+                    <a href="profile.html" class="active"><i class="fas fa-user"></i> معلوماتي</a>
+                    <a href="profile-favorites.html"><i class="fas fa-heart"></i> المفضلة</a>
+                    <a href="profile-history.html"><i class="fas fa-history"></i> سجل القراءة</a>
+                    <a href="profile-comments.html"><i class="fas fa-comment"></i> تعليقاتي</a>
+                    <a href="profile-settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                </nav>
+            </aside>
+            
+            <!-- المحتوى الرئيسي -->
+            <div class="profile-content">
+                <div class="profile-header">
+                    <h2 class="profile-title">معلوماتي الشخصية</h2>
+                    <div class="profile-actions">
+                        <button class="btn btn-outline">تعديل الملف</button>
+                        <button class="btn">مشاركة الملف</button>
+                    </div>
+                </div>
+                
+                <!-- قسم المعلومات الشخصية -->
+                <section id="personal-info">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">معلومات أساسية</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">الاسم الكامل</span>
+                            <div class="info-value">محمد أحمد عبدالله</div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">تاريخ الميلاد</span>
+                            <div class="info-value">15 مارس 1995</div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">الجنس</span>
+                            <div class="info-value">ذكر</div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">البلد</span>
+                            <div class="info-value">المملكة العربية السعودية</div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">تاريخ التسجيل</span>
+                            <div class="info-value">15 يناير 2022</div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">آخر نشاط</span>
+                            <div class="info-value">منذ ساعتين</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- قسم المفضلة -->
+                <section id="favorites" style="margin-top: 2.5rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">المانغا المفضلة</h3>
+                    <div class="manga-grid">
+                        <div class="manga-card">
+                            <div class="manga-cover">
+                                <img src="https://via.placeholder.com/150x200" alt="ون بيس">
+                            </div>
+                            <div class="manga-info">
+                                <h4 class="manga-title">ون بيس</h4>
+                                <p class="manga-chapter">الفصل 1054</p>
+                            </div>
+                        </div>
+                        <div class="manga-card">
+                            <div class="manga-cover">
+                                <img src="https://via.placeholder.com/150x200" alt="هجوم العمالقة">
+                            </div>
+                            <div class="manga-info">
+                                <h4 class="manga-title">هجوم العمالقة</h4>
+                                <p class="manga-chapter">الفصل 139</p>
+                            </div>
+                        </div>
+                        <div class="manga-card">
+                            <div class="manga-cover">
+                                <img src="https://via.placeholder.com/150x200" alt="ناروتو">
+                            </div>
+                            <div class="manga-info">
+                                <h4 class="manga-title">ناروتو</h4>
+                                <p class="manga-chapter">الفصل 700</p>
+                            </div>
+                        </div>
+                        <div class="manga-card">
+                            <div class="manga-cover">
+                                <img src="https://via.placeholder.com/150x200" alt="بليتش">
+                            </div>
+                            <div class="manga-info">
+                                <h4 class="manga-title">بليتش</h4>
+                                <p class="manga-chapter">الفصل 686</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- قسم النشاطات الأخيرة -->
+                <section id="activity" style="margin-top: 2.5rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--primary-color);">النشاطات الأخيرة</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-avatar">
+                                <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة المستخدم">
+                            </div>
+                            <div class="activity-content">
+                                <p class="activity-text">أضفت <a href="#" style="color: var(--secondary-color);">ون بيس</a> إلى قائمة المفضلة</p>
+                                <p class="activity-time">منذ ساعتين</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">
+                                <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة المستخدم">
+                            </div>
+                            <div class="activity-content">
+                                <p class="activity-text">علقت على <a href="#" style="color: var(--secondary-color);">هجوم العمالقة الفصل 139</a></p>
+                                <p class="activity-time">منذ يوم</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-avatar">
+                                <img src="https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff" alt="صورة المستخدم">
+                            </div>
+                            <div class="activity-content">
+                                <p class="activity-text">أكملت قراءة <a href="#" style="color: var(--secondary-color);">بليتش الفصل 686</a></p>
+                                <p class="activity-time">منذ 3 أيام</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="footer-container">
+            <p class="copyright">&copy; 2023 مانغا نا. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- كود الجافاسكريبت -->
+    <script>
+        // تحميل بيانات المستخدم من localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {
+                name: 'محمد أحمد',
+                username: '@mohammed_ahmed',
+                email: 'mohammed@example.com',
+                avatar: 'https://ui-avatars.com/api/?name=محمد+أحمد&background=3a3f58&color=fff',
+                bio: 'عاشق للمانغا ومتابع لكل جديد في عالم الأنمي والمانغا اليابانية'
+            };
+            
+            // تعبئة بيانات المستخدم في الصفحة
+            document.querySelector('.profile-name').textContent = currentUser.name;
+            document.querySelector('.profile-username').textContent = currentUser.username;
+            document.querySelector('.profile-email').textContent = currentUser.email;
+            document.querySelector('.profile-bio').textContent = currentUser.bio;
+            document.querySelectorAll('.user-avatar img, .profile-avatar img, .activity-avatar img').forEach(img => {
+                img.src = currentUser.avatar;
+            });
+            
+            // تغيير صورة الملف الشخصي
+            const avatarEdit = document.querySelector('.avatar-edit');
+            avatarEdit.addEventListener('click', function() {
+                const newAvatar = prompt('أدخل رابط الصورة الجديدة:');
+                if (newAvatar) {
+                    document.querySelectorAll('.user-avatar img, .profile-avatar img, .activity-avatar img').forEach(img => {
+                        img.src = newAvatar;
+                    });
+                    currentUser.avatar = newAvatar;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    alert('تم تحديث صورة الملف الشخصي بنجاح');
+                }
+            });
+            
+            // زر تعديل الملف
+            const editBtn = document.querySelector('.btn-outline');
+            editBtn.addEventListener('click', function() {
+                const newBio = prompt('أدخل السيرة الذاتية الجديدة:', currentUser.bio);
+                if (newBio !== null) {
+                    document.querySelector('.profile-bio').textContent = newBio;
+                    currentUser.bio = newBio;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            });
+        });
+    </script>
+</body>
+</html>

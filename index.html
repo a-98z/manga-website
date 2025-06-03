@@ -434,13 +434,13 @@
             <a href="index.html" class="logo">مانغا<span style="color: var(--secondary-color);">نا</span></a>
             
             <ul class="nav-links">
-    <li><a href="index.html">الرئيسية</a></li>
-    <li><a href="manga-list.html">قائمة المانجا</a></li>
-    <li><a href="updates.html">الشات</a></li>
-    <li><a href="categories.html">الاقسام</a></li>
-    <li><a href="society.html">المجتمع</a></li>
-    <li><a href="profile.html">الملف الشخصي</a></li>
-</ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="manga-list.html">قائمة المانجا</a></li>
+                <li><a href="updates.html">الشات</a></li>
+                <li><a href="categories.html">الاقسام</a></li>
+                <li><a href="society.html">المجتمع</a></li>
+                <li><a href="profile.html">الملف الشخصي</a></li>
+            </ul>
             
             <div class="search-bar">
                 <input type="text" placeholder="ابحث عن مانغا...">
@@ -724,17 +724,6 @@
     </footer>
     
     <script>
-       
-   <script>
-    function checkCookie() {
-        const cookies = document.cookie.split(';');
-        const isLoggedIn = cookies.some(cookie => cookie.includes("isLoggedIn=true"));
-        if (!isLoggedIn) window.location.href = "login.html";
-    }
-    window.onload = checkCookie; // تحقق عند فتح الصفحة
-</script>
-    window.onload = checkCookie; // تحقق عند فتح الصفحة
-
         // التحقق من حالة تسجيل الدخول عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));

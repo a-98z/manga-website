@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         :root {
-            --primary: #3a3f58;
-            --secondary: #fc5c65;
-            --light: #f8f9fa;
-            --dark: #2c2c2c;
-            --card-bg: #ffffff;
+            --primary-color: #3a3f58;
+            --secondary-color: #fc5c65;
+            --dark-color: #2c2c2c;
+            --light-color: #f5f5f5;
         }
         
         * {
@@ -24,18 +23,17 @@
         }
         
         body {
-            background-color: #f5f5f5;
-            color: var(--dark);
+            background-color: var(--light-color);
+            color: var(--dark-color);
         }
         
         /* شريط التنقل العلوي */
         .navbar {
-            background-color: var(--primary);
+            background-color: var(--primary-color);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .navbar-container {
@@ -55,7 +53,7 @@
         }
         
         .logo span {
-            color: var(--secondary);
+            color: var(--secondary-color);
         }
         
         .nav-links {
@@ -70,17 +68,15 @@
         .nav-links a {
             color: white;
             text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: all 0.3s;
+            transition: color 0.3s;
         }
         
         .nav-links a:hover {
-            background-color: rgba(255,255,255,0.1);
+            color: var(--secondary-color);
         }
         
         .nav-links a.active {
-            background-color: var(--secondary);
+            color: var(--secondary-color);
         }
         
         .search-bar {
@@ -93,29 +89,116 @@
             border: none;
             border-radius: 20px 0 0 20px;
             outline: none;
-            width: 200px;
         }
         
         .search-bar button {
-            background-color: var(--secondary);
+            background-color: var(--secondary-color);
             color: white;
             border: none;
             padding: 8px 15px;
             border-radius: 0 20px 20px 0;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
         
-        .search-bar button:hover {
+        /* أنماط تسجيل الدخول/التسجيل */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .auth-buttons a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+        
+        .auth-buttons .btn-login {
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        
+        .auth-buttons .btn-register {
+            background-color: var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        
+        .auth-buttons .btn-register:hover {
             background-color: #e74c3c;
         }
         
-        /* التصميم العام */
+        /* أنماط ملف المستخدم */
+        .user-profile {
+            display: none;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 10px;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .username {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        
+        .user-dropdown a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .user-dropdown a:hover {
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+        }
+        
+        .user-dropdown a i {
+            margin-left: 8px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .user-profile:hover .user-dropdown {
+            display: block;
+        }
+        
+        /* أنماط صفحة التصنيفات */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
+            padding: 50px 20px;
         }
         
         .section-header {
@@ -127,7 +210,7 @@
         
         .section-title {
             font-size: 28px;
-            color: var(--primary);
+            color: var(--primary-color);
             position: relative;
             padding-bottom: 10px;
         }
@@ -139,11 +222,11 @@
             right: 0;
             width: 70px;
             height: 3px;
-            background: var(--secondary);
+            background: var(--secondary-color);
         }
         
         .view-all {
-            background: var(--primary);
+            background: var(--primary-color);
             color: white;
             padding: 8px 20px;
             border-radius: 30px;
@@ -153,8 +236,7 @@
         }
         
         .view-all:hover {
-            background: var(--secondary);
-            transform: translateY(-2px);
+            background: var(--secondary-color);
         }
         
         /* تصنيفات البطاقات */
@@ -166,10 +248,10 @@
         }
         
         .category-card {
-            background: var(--card-bg);
-            border-radius: 12px;
+            background: white;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             position: relative;
             display: block;
@@ -177,15 +259,15 @@
         }
         
         .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
         
         .category-badge {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: var(--secondary);
+            background: var(--secondary-color);
             color: white;
             padding: 5px 10px;
             border-radius: 20px;
@@ -217,7 +299,7 @@
         .category-title {
             font-size: 18px;
             margin-bottom: 10px;
-            color: var(--primary);
+            color: var(--primary-color);
         }
         
         .category-count {
@@ -245,7 +327,7 @@
         }
         
         .subcategory:hover {
-            background: var(--secondary);
+            background: var(--secondary-color);
             color: white;
         }
         
@@ -254,46 +336,9 @@
             margin-top: 40px;
         }
         
-        /* تأثير التمييز عند الوصول للقسم المحدد */
-        .category-card:target {
-            animation: highlight 1.5s ease;
-            border-left: 5px solid var(--secondary);
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(252, 92, 101, 0.3);
-        }
-        
-        @keyframes highlight {
-            0% { background-color: rgba(252, 92, 101, 0.1); }
-            100% { background-color: transparent; }
-        }
-        
-        /* زر العودة لأعلى */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: var(--secondary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 24px;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-        }
-        
         /* تذييل الصفحة */
         footer {
-            background-color: var(--dark);
+            background-color: var(--dark-color);
             color: white;
             padding: 50px 0 20px;
             text-align: center;
@@ -312,12 +357,11 @@
         .footer-column h3 {
             margin-bottom: 20px;
             font-size: 20px;
-            color: var(--secondary);
+            color: var(--secondary-color);
         }
         
         .footer-column ul {
             list-style: none;
-            padding: 0;
         }
         
         .footer-column ul li {
@@ -351,11 +395,10 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.3s;
-            text-decoration: none;
         }
         
         .social-links a:hover {
-            background-color: var(--secondary);
+            background-color: var(--secondary-color);
         }
         
         .copyright {
@@ -364,6 +407,30 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #bbb;
             font-size: 14px;
+        }
+        
+        /* زر العودة لأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
         }
         
         /* التصميم للجوال */
@@ -377,13 +444,13 @@
             }
             
             .nav-links {
-                margin: 15px 0;
-                flex-wrap: wrap;
-                justify-content: center;
+                margin-bottom: 15px;
+                flex-direction: column;
+                align-items: center;
             }
             
             .nav-links li {
-                margin: 5px 10px;
+                margin: 5px 0;
             }
             
             .search-bar {
@@ -396,7 +463,7 @@
             }
             
             .categories-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 15px;
             }
             
@@ -405,27 +472,6 @@
             }
             
             .footer-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .footer-column {
-                text-align: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .view-all {
-                margin-top: 10px;
-                align-self: flex-end;
-            }
-            
-            .categories-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -449,6 +495,26 @@
             <div class="search-bar">
                 <input type="text" placeholder="ابحث عن مانجا..." aria-label="بحث عن مانجا">
                 <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <!-- حالة غير مسجل الدخول -->
+            <div class="auth-buttons" id="guest-view">
+                <a href="login.html" class="btn-login">تسجيل الدخول</a>
+                <a href="register.html" class="btn-register">إنشاء حساب</a>
+            </div>
+            
+            <!-- حالة مسجل الدخول (ستظهر عبر الجافاسكريبت) -->
+            <div class="user-profile" id="user-view" style="display: none;">
+                <div class="user-avatar">
+                    <img src="" alt="صورة المستخدم" id="user-avatar">
+                </div>
+                <span class="username" id="username">مرحباً، محمد</span>
+                <div class="user-dropdown">
+                    <a href="profile.html"><i class="fas fa-user"></i> الملف الشخصي</a>
+                    <a href="my-list.html"><i class="fas fa-bookmark"></i> قائمتي</a>
+                    <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
+                    <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -800,34 +866,38 @@
             <div class="footer-column">
                 <h3>عن الموقع</h3>
                 <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
             </div>
             
             <div class="footer-column">
                 <h3>روابط سريعة</h3>
                 <ul>
                     <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="manga-list.html">قائمة المانجا</a></li>
+                    <li><a href="manga-list.html">قائمة المانغا</a></li>
                     <li><a href="categories.html">الاقسام</a></li>
                     <li><a href="updates.html">الشات</a></li>
                     <li><a href="society.html">المجتمع</a></li>
-                    <li><a href="login.html">تسجيل الدخول</a></li>
-                    <li><a href="register.html">إنشاء حساب</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
-                <h3>التواصل الاجتماعي</h3>
-                <div class="social-links">
-                    <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="ديسكورد"><i class="fab fa-discord"></i></a>
-                </div>
+                <h3>الحساب</h3>
+                <ul>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                    <li><a href="register.html">إنشاء حساب</a></li>
+                    <li><a href="profile.html">الملف الشخصي</a></li>
+                    <li><a href="settings.html">الإعدادات</a></li>
+                </ul>
             </div>
         </div>
         
         <div class="copyright">
-            &copy; 2023 مانجا نا. جميع الحقوق محفوظة.
+            &copy; 2023 موقع مانغا نا. جميع الحقوق محفوظة.
         </div>
     </footer>
 
@@ -836,40 +906,62 @@
 
     <!-- الجافاسكريبت -->
     <script>
-        <script>
-    function checkCookie() {
-        const cookies = document.cookie.split(';');
-        const isLoggedIn = cookies.some(cookie => cookie.includes("isLoggedIn=true"));
-        if (!isLoggedIn) window.location.href = "login.html";
-    }
-    window.onload = checkCookie; // تحقق عند فتح الصفحة
-</script>
-        // ظهور/إخفاء زر العودة عند التمرير
-        window.addEventListener('scroll', function() {
-            const backButton = document.getElementById('backToTop');
-            if (window.scrollY > 500) {
-                backButton.classList.add('visible');
-            } else {
-                backButton.classList.remove('visible');
+        // التحقق من حالة تسجيل الدخول عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const guestView = document.getElementById('guest-view');
+            const userView = document.getElementById('user-view');
+            
+            if (currentUser && currentUser.loggedIn) {
+                // عرض واجهة المستخدم المسجل
+                guestView.style.display = 'none';
+                userView.style.display = 'flex';
+                
+                // تعبئة بيانات المستخدم
+                document.getElementById('username').textContent = `مرحباً، ${currentUser.name.split(' ')[0]}`;
+                document.getElementById('user-avatar').src = currentUser.avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(currentUser.name) + '&background=3a3f58&color=fff';
             }
-        });
-
-        // تأثير سلس للانتقال للأقسام
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            
+            // زر تسجيل الخروج
+            document.getElementById('logout-btn').addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            });
+            
+            // ظهور/إخفاء زر العودة عند التمرير
+            window.addEventListener('scroll', function() {
+                const backButton = document.getElementById('backToTop');
+                if (window.scrollY > 500) {
+                    backButton.classList.add('visible');
+                } else {
+                    backButton.classList.remove('visible');
+                }
+                
+                // تأثيرات التمرير لشريط التنقل
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(58, 63, 88, 0.9)';
+                } else {
+                    navbar.style.backgroundColor = 'var(--primary-color)';
                 }
             });
-        });
-
-        // إضافة تأثيرات للبطاقات عند التمرير
-        document.addEventListener('DOMContentLoaded', function() {
+            
+            // تأثير سلس للانتقال للأقسام
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // إضافة تأثيرات للبطاقات عند التمرير
             const cards = document.querySelectorAll('.category-card');
             
             const observer = new IntersectionObserver((entries) => {

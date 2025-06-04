@@ -35,17 +35,10 @@
         /* شريط التنقل */
         .navbar {
             background-color: var(--primary-color);
-            padding: 1rem 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .navbar.scrolled {
-            background-color: rgba(58, 63, 88, 0.95);
-            padding: 0.5rem 0;
         }
         
         .navbar-container {
@@ -59,24 +52,9 @@
         
         .logo {
             color: white;
-            font-size: 1.8rem;
+            font-size: 24px;
             font-weight: bold;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo i {
-            margin-left: 10px;
-        }
-        
-        .logo span.highlight {
-            color: var(--secondary-color);
         }
         
         .nav-links {
@@ -85,135 +63,69 @@
         }
         
         .nav-links li {
-            margin-left: 1.5rem;
+            margin-left: 20px;
         }
         
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            padding: 0.5rem 0;
-            position: relative;
+            transition: color 0.3s;
         }
         
         .nav-links a:hover {
             color: var(--secondary-color);
         }
         
-        .nav-links a.active {
-            color: var(--secondary-color);
-            font-weight: 500;
-        }
-        
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--secondary-color);
-        }
-        
-        .user-actions {
+        .search-bar {
             display: flex;
             align-items: center;
         }
         
-        .user-actions a {
-            color: white;
-            text-decoration: none;
-            margin-left: 1rem;
-            font-size: 1rem;
-            transition: color 0.3s;
+        .search-bar input {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px 0 0 20px;
+            outline: none;
         }
         
-        .user-actions a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .btn {
-            background: var(--secondary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s;
+        .search-bar button {
+            background-color: var(--secondary-color);
             color: white;
             border: none;
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        .btn:hover {
-            background: #e74c3c;
-            transform: translateY(-2px);
-        }
-        
-        .user-profile {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #fff;
-            margin-left: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        
-        .user-profile:hover .user-avatar {
-            transform: scale(1.1);
-        }
-        
-        .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .user-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 200px;
-            box-shadow: var(--card-shadow);
-            border-radius: 5px;
-            padding: 10px 0;
-            z-index: 1000;
-            display: none;
-            animation: fadeIn 0.3s ease-out;
-        }
-        
-        .user-profile:hover .user-dropdown {
-            display: block;
-        }
-        
-        .user-dropdown a {
-            display: flex;
-            align-items: center;
             padding: 8px 15px;
-            color: var(--dark-color);
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+        }
+        
+        /* أنماط تسجيل الدخول/التسجيل */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .auth-buttons a {
+            color: white;
             text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+        
+        .auth-buttons .btn-login {
+            padding: 8px 20px;
+            border-radius: 20px;
             transition: all 0.3s;
-            font-size: 0.9rem;
         }
         
-        .user-dropdown a i {
-            margin-left: 8px;
-            width: 20px;
-            text-align: center;
+        .auth-buttons .btn-register {
+            background-color: var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: all 0.3s;
         }
         
-        .user-dropdown a:hover {
-            background: #f0f0f0;
-            color: var(--secondary-color);
-            padding-right: 20px;
+        .auth-buttons .btn-register:hover {
+            background-color: #e74c3c;
         }
         
         /* محتوى صفحة المجتمع */
@@ -225,38 +137,25 @@
         
         .section-title {
             text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
+            margin-bottom: 40px;
+            font-size: 32px;
             color: var(--primary-color);
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            transform: translateX(50%);
-            width: 100px;
-            height: 3px;
-            background: var(--secondary-color);
         }
         
         .community-description {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 30px;
             color: #555;
-            font-size: 1.1rem;
+            font-size: 18px;
             line-height: 1.8;
         }
         
         .community-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 30px;
+            padding: 0 20px;
         }
         
         .community-card {
@@ -265,8 +164,6 @@
             overflow: hidden;
             box-shadow: var(--card-shadow);
             transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
         }
         
         .community-card:hover {
@@ -275,48 +172,39 @@
         }
         
         .community-header {
-            padding: 1.5rem;
+            padding: 20px;
             background: var(--primary-color);
             color: white;
             text-align: center;
         }
         
         .community-header i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 32px;
+            margin-bottom: 15px;
             display: block;
-            transition: transform 0.3s;
-        }
-        
-        .community-card:hover .community-header i {
-            transform: scale(1.1);
         }
         
         .community-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
         
         .community-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 20px;
         }
         
         .community-content p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
             color: #555;
             line-height: 1.7;
-            flex-grow: 1;
         }
         
         .community-stats {
             display: flex;
             justify-content: space-between;
-            margin-top: 1rem;
+            margin-top: 15px;
             color: #777;
-            font-size: 0.9rem;
+            font-size: 14px;
         }
         
         .community-stats i {
@@ -327,7 +215,7 @@
             display: inline-block;
             background: var(--secondary-color);
             color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
@@ -339,8 +227,6 @@
         
         .btn:hover {
             background: #e74c3c;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
         .btn-block {
@@ -352,8 +238,8 @@
         footer {
             background-color: var(--dark-color);
             color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: 3rem;
+            padding: 50px 0 20px;
+            text-align: center;
         }
         
         .footer-container {
@@ -361,26 +247,15 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 0 1rem;
+            gap: 30px;
+            padding: 0 20px;
+            text-align: right;
         }
         
         .footer-column h3 {
-            margin-bottom: 1.25rem;
-            font-size: 1.25rem;
+            margin-bottom: 20px;
+            font-size: 20px;
             color: var(--secondary-color);
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--secondary-color);
         }
         
         .footer-column ul {
@@ -388,27 +263,24 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
         }
         
         .footer-column ul li a {
             color: #bbb;
             text-decoration: none;
-            transition: all 0.3s;
-            display: block;
-            padding: 0.3rem 0;
+            transition: color 0.3s;
         }
         
         .footer-column ul li a:hover {
             color: white;
-            padding-right: 5px;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 15px;
+            margin-top: 30px;
         }
         
         .social-links a {
@@ -420,72 +292,43 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: background-color 0.3s;
         }
         
         .social-links a:hover {
             background-color: var(--secondary-color);
-            transform: translateY(-3px);
         }
         
         .copyright {
-            margin-top: 2rem;
-            padding-top: 1rem;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #bbb;
-            font-size: 0.875rem;
-            text-align: center;
+            font-size: 14px;
         }
-        
-        /* تأثيرات الحركة */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* تأثيرات التحميل */
-        .community-card {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.5s ease forwards;
-        }
-        
-        .community-card:nth-child(1) { animation-delay: 0.1s; }
-        .community-card:nth-child(2) { animation-delay: 0.2s; }
-        .community-card:nth-child(3) { animation-delay: 0.3s; }
-        .community-card:nth-child(4) { animation-delay: 0.4s; }
-        .community-card:nth-child(5) { animation-delay: 0.5s; }
-        .community-card:nth-child(6) { animation-delay: 0.6s; }
         
         /* تصميم متجاوب */
-        @media (max-width: 992px) {
-            .community-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-        
         @media (max-width: 768px) {
             .navbar-container {
                 flex-direction: column;
-                padding: 1rem;
             }
             
             .logo {
-                margin-bottom: 1rem;
+                margin-bottom: 15px;
             }
             
             .nav-links {
-                margin-bottom: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
+                margin-bottom: 15px;
+                flex-direction: column;
+                align-items: center;
             }
             
             .nav-links li {
-                margin: 0 0.5rem 0.5rem;
+                margin: 5px 0;
             }
             
-            .user-actions {
-                margin-top: 1rem;
+            .auth-buttons {
+                margin: 15px 0;
             }
             
             .community-grid {
@@ -496,29 +339,6 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
-            .footer-column h3::after {
-                right: 50%;
-                transform: translateX(50%);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .community-description {
-                font-size: 1rem;
-            }
-            
-            .community-header {
-                padding: 1rem;
-            }
-            
-            .community-content {
-                padding: 1rem;
-            }
         }
     </style>
 </head>
@@ -526,41 +346,26 @@
     <!-- شريط التنقل العلوي -->
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-book-open"></i>
-                <span>مانغا<span class="highlight">نا</span></span>
-            </a>
+            <a href="index.html" class="logo">مانغا<span style="color: var(--secondary-color);">نا</span></a>
             
             <ul class="nav-links">
                 <li><a href="index.html">الرئيسية</a></li>
                 <li><a href="manga-list.html">قائمة المانجا</a></li>
                 <li><a href="updates.html">الشات</a></li>
                 <li><a href="categories.html">الاقسام</a></li>
-                <li><a href="society.html" class="active">المجتمع</a></li>
+                <li><a href="society.html" style="color: var(--secondary-color);">المجتمع</a></li>
                 <li><a href="profile.html">الملف الشخصي</a></li>
             </ul>
             
-            <div class="user-actions">
-                <!-- حالة تسجيل الدخول - يمكن التبديل بين الحالتين -->
-                <!-- الحالة 1: غير مسجل الدخول -->
-                <!--
-                <a href="login.html">تسجيل الدخول</a>
-                <a href="register.html" class="btn">إنشاء حساب</a>
-                -->
-                
-                <!-- الحالة 2: مسجل الدخول -->
-                <div class="user-profile">
-                    <div class="user-avatar">
-                        <img src="https://via.placeholder.com/150" alt="صورة المستخدم">
-                    </div>
-                    <span>مرحباً، محمد</span>
-                    <div class="user-dropdown">
-                        <a href="profile.html"><i class="fas fa-user"></i> الملف الشخصي</a>
-                        <a href="settings.html"><i class="fas fa-cog"></i> الإعدادات</a>
-                        <a href="my-list.html"><i class="fas fa-bookmark"></i> قائمتي</a>
-                        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
-                    </div>
-                </div>
+            <div class="search-bar">
+                <input type="text" placeholder="ابحث عن مانغا...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <!-- حالة غير مسجل الدخول -->
+            <div class="auth-buttons">
+                <a href="login.html" class="btn-login">تسجيل الدخول</a>
+                <a href="register.html" class="btn-register">إنشاء حساب</a>
             </div>
         </div>
     </nav>
@@ -697,37 +502,34 @@
             <div class="footer-column">
                 <h3>عن الموقع</h3>
                 <p>موقع مانغا نا هو موقع لقراءة المانغا والمانهوا العربية مجاناً. نحن نقدم أفضل تجربة قراءة للمستخدمين العرب.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
             </div>
             
             <div class="footer-column">
                 <h3>روابط سريعة</h3>
                 <ul>
                     <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="manga-list.html">قائمة المانجا</a></li>
+                    <li><a href="manga-list.html">قائمة المانغا</a></li>
                     <li><a href="categories.html">الاقسام</a></li>
                     <li><a href="updates.html">الشات</a></li>
                     <li><a href="society.html">المجتمع</a></li>
-                    <li><a href="login.html">تسجيل الدخول</a></li>
-                    <li><a href="register.html">إنشاء حساب</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
-                <h3>المساعدة</h3>
+                <h3>الحساب</h3>
                 <ul>
-                    <li><a href="faq.html">الأسئلة الشائعة</a></li>
-                    <li><a href="terms.html">شروط الاستخدام</a></li>
-                    <li><a href="policy.html">سياسة الخصوصية</a></li>
-                    <li><a href="report.html">الإبلاغ عن مشكلة</a></li>
+                    <li><a href="login.html">تسجيل الدخول</a></li>
+                    <li><a href="register.html">إنشاء حساب</a></li>
+                    <li><a href="profile.html">الملف الشخصي</a></li>
+                    <li><a href="settings.html">الإعدادات</a></li>
                 </ul>
             </div>
-        </div>
-        
-        <div class="social-links">
-            <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="ديسكورد"><i class="fab fa-discord"></i></a>
         </div>
         
         <div class="copyright">
@@ -735,18 +537,7 @@
         </div>
     </footer>
 
-    <!-- تأثير التمرير لشريط التنقل -->
     <script>
-        
-    <script>
-    function checkCookie() {
-        const cookies = document.cookie.split(';');
-        const isLoggedIn = cookies.some(cookie => cookie.includes("isLoggedIn=true"));
-        if (!isLoggedIn) window.location.href = "login.html";
-    }
-    window.onload = checkCookie; // تحقق عند فتح الصفحة
-</script>
-    window.onload = checkCookie; // تحقق عند فتح الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             // تحديث سنة حقوق النشر تلقائياً
             document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -755,29 +546,10 @@
             window.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
+                    navbar.style.backgroundColor = 'rgba(58, 63, 88, 0.9)';
                 } else {
-                    navbar.classList.remove('scrolled');
+                    navbar.style.backgroundColor = 'var(--primary-color)';
                 }
-            });
-            
-            // تأثيرات ظهور العناصر عند التمرير
-            const observerOptions = {
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // مراقبة بطاقات المجتمع
-            document.querySelectorAll('.community-card').forEach(card => {
-                observer.observe(card);
             });
         });
     </script>
